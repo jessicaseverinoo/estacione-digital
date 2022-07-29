@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:estacione_digital/design_system/colors.dart';
-import 'package:estacione_digital/src/ui/Wallet/widgets/card_credit.dart';
+import 'package:estacione_digital/src/view/Wallet/widgets/card_credit.dart';
 import 'package:flutter/material.dart';
 
 class Wallet extends StatelessWidget {

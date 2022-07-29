@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "301639464046",
+    "project_id": "estacione-digital",
+    "storage_bucket": "estacione-digital.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:301639464046:android:6e1be4a8adf21477ace27f",
+        "android_client_info": {
+          "package_name": "com.example.estacione_digital"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "301639464046-ptq34vpb3upv1idigmchvn7k5tp161td.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWlhjTMombiktfvAm-_-RccoddsVtllB4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "301639464046-ptq34vpb3upv1idigmchvn7k5tp161td.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

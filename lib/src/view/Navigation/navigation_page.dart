@@ -1,7 +1,7 @@
 import 'package:estacione_digital/design_system/colors.dart';
 import 'package:estacione_digital/src/shared/widgets/menu.dart';
-import 'package:estacione_digital/src/ui/Home/home_page.dart';
-import 'package:estacione_digital/src/ui/Wallet/wallet_page.dart';
+import 'package:estacione_digital/src/view/Home/home_page.dart';
+import 'package:estacione_digital/src/view/Wallet/wallet_page.dart';
 import 'package:flutter/material.dart';
 
 class NavigationPage extends StatefulWidget {
@@ -15,6 +15,7 @@ class _NavigationPageState extends State<NavigationPage> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+
   static const List<Widget> _widgetOptions = <Widget>[
     Home(),
     Text(
@@ -22,6 +23,7 @@ class _NavigationPageState extends State<NavigationPage> {
       style: optionStyle,
     ),
     Wallet(),
+    //TODO: Adicionar widget da lista de veiculos
     Text(
       'Index 3: School',
       style: optionStyle,
@@ -100,7 +102,7 @@ class _NavigationPageState extends State<NavigationPage> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: kPrimary,
         onTap: _onItemTapped,
       ),
     );

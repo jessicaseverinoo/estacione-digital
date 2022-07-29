@@ -1,7 +1,7 @@
 import 'package:estacione_digital/design_system/colors.dart';
 import 'package:estacione_digital/src/shared/widgets/alert_card.dart';
-import 'package:estacione_digital/src/ui/Home/widgets/bottom_sheet_tickets.dart';
-import 'package:estacione_digital/src/ui/Home/widgets/timer.dart';
+import 'package:estacione_digital/src/view/Home/widgets/bottom_sheet_tickets.dart';
+import 'package:estacione_digital/src/view/Home/widgets/timer.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
@@ -84,6 +84,7 @@ class Home extends StatelessWidget {
           ElevatedButton(
             onPressed: () {
               showModalBottomSheet<void>(
+                isScrollControlled: true,
                 context: context,
                 builder: (BuildContext context) {
                   return const BottomSheetTickets();
