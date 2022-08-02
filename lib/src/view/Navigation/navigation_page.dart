@@ -1,6 +1,7 @@
 import 'package:estacione_digital/design_system/colors.dart';
 import 'package:estacione_digital/src/shared/widgets/menu.dart';
 import 'package:estacione_digital/src/view/Home/home_page.dart';
+import 'package:estacione_digital/src/view/Vehicles/vehicle_page.dart';
 import 'package:estacione_digital/src/view/Wallet/wallet_page.dart';
 import 'package:flutter/material.dart';
 
@@ -23,11 +24,7 @@ class _NavigationPageState extends State<NavigationPage> {
       style: optionStyle,
     ),
     Wallet(),
-    //TODO: Adicionar widget da lista de veiculos
-    Text(
-      'Index 3: School',
-      style: optionStyle,
-    ),
+    VehiclePage(),
     Text(
       'Index 4: School',
       style: optionStyle,
