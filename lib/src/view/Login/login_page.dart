@@ -1,3 +1,4 @@
+import 'package:estacione_digital/src/view/Navigation/navigation_page.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
@@ -66,7 +67,14 @@ class _LoginState extends State<Login> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NavigationPage(),
+                      ),
+                    );
+                  },
                   child: const Text('Entrar'),
                 ),
               ),

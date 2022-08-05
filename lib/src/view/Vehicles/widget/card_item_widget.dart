@@ -19,15 +19,19 @@ class CardItemWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Icon(Icons.car_crash),
+            const SizedBox(width: 8,),
             Text(
               licensePlate,
               style: TextStyle(fontSize: 16),
             ),
-            Icon(Icons.star),
+            Spacer(),
+            Icon(Icons.star,color: favorite == true ? Colors.amber: Colors.grey),
+            const SizedBox(width: 8,),
             Icon(Icons.edit),
+            const SizedBox(width: 8,),
             Icon(Icons.restore_from_trash)
           ],
         ),
