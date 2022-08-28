@@ -1,4 +1,5 @@
 import 'package:estacione_digital/design_system/colors.dart';
+import 'package:estacione_digital/src/view/Login/login_page.dart';
 import 'package:flutter/material.dart';
 
 class Menu extends StatelessWidget {
@@ -56,7 +57,12 @@ class Menu extends StatelessWidget {
             ListTile(
               title: const Text('Sair'),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Login(),
+                  ),
+                );
               },
               textColor: kWhite,
             ),
