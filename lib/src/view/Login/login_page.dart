@@ -86,7 +86,8 @@ class _LoginState extends State<Login> {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-                        _clickLogin(context);
+                        // _clickLogin(context);
+                        _navegaHomePage();
                       },
                       child: const Text('Entrar'),
                     ),
@@ -112,7 +113,7 @@ class _LoginState extends State<Login> {
     );
   }
 
-  void _navegaHomePage(BuildContext context) {
+  void _navegaHomePage() {
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -130,7 +131,7 @@ class _LoginState extends State<Login> {
           await LoginApi.login(cpfCnpjController.text, senhaController.text);
 
       if (response == true) {
-        _navegaHomePage(context);
+        _navegaHomePage();
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(

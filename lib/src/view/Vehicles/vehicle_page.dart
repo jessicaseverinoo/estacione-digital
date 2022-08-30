@@ -20,6 +20,7 @@ class VehiclePage extends StatelessWidget {
               hintText: 'Enter a search term',
             ),
           ),
+          const SizedBox(height: 24),
           Expanded(
             child: ListView(
               children: const [
@@ -27,16 +28,19 @@ class VehiclePage extends StatelessWidget {
                     vehicleType: 'car',
                     licensePlate: 'abc-1234',
                     favorite: true),
+                SizedBox(height: 12),
                 CardItemWidget(
-                    vehicleType: 'car',
+                    vehicleType: 'truck',
                     licensePlate: 'xyz-1111',
                     favorite: false),
+                SizedBox(height: 12),
                 CardItemWidget(
                     vehicleType: 'car',
                     licensePlate: 'klj-2314',
                     favorite: false),
+                SizedBox(height: 12),
                 CardItemWidget(
-                    vehicleType: 'car',
+                    vehicleType: 'buss',
                     licensePlate: 'vvlk-1986',
                     favorite: false),
               ],
