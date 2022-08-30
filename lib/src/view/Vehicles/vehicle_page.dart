@@ -11,8 +11,10 @@ class VehiclePage extends StatelessWidget {
         child: Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          TextField(
+          const TextField(
             decoration: InputDecoration(
               border: OutlineInputBorder(),
               hintText: 'Enter a search term',
@@ -20,7 +22,7 @@ class VehiclePage extends StatelessWidget {
           ),
           Expanded(
             child: ListView(
-              children: [
+              children: const [
                 CardItemWidget(
                     vehicleType: 'car',
                     licensePlate: 'abc-1234',
@@ -40,16 +42,12 @@ class VehiclePage extends StatelessWidget {
               ],
             ),
           ),
-          // ElevatedButton(
-          //   onPressed: () {},
-          //   child: Text('Adicionar Veículo'),
-          // ),
           ElevatedButton(
             onPressed: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => AddVehiclePage(),
+                  builder: (context) => const AddVehiclePage(),
                 ),
               );
             },
@@ -60,10 +58,3 @@ class VehiclePage extends StatelessWidget {
     ));
   }
 }
-
-
-
-
-
-
-

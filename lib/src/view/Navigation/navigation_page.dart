@@ -20,13 +20,9 @@ class _NavigationPageState extends State<NavigationPage> {
 
   static const List<Widget> _widgetOptions = <Widget>[
     Home(),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
     Wallet(),
-    // VehiclePage(),
-    AddVehiclePage(),
+    VehiclePage(),
+    // AddVehiclePage(),
     Text(
       'Index 4: School',
       style: optionStyle,
@@ -82,10 +78,6 @@ class _NavigationPageState extends State<NavigationPage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home_rounded),
             label: 'Início',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.history_rounded),
-            label: 'Histórico',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.payment_rounded),
