@@ -99,8 +99,20 @@ class _LoginState extends State<Login> {
                       'Versão 1.0.0+1',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 12,
-                        color: Color(0xff424242),
+                        color: Color(0xff34437A),
+                        decoration: TextDecoration.underline,
+                      ),
+                    )),
+              ),
+              const SizedBox(height: 24),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const NavigationPage(),
                       ),
                     ),
                   )
