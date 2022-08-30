@@ -95,27 +95,14 @@ class _LoginState extends State<Login> {
                     height: 24,
                   ),
                   const Center(
-                    child: Text(
-                      'Versão 1.0.0+1',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xff34437A),
-                        decoration: TextDecoration.underline,
-                      ),
-                    )),
-              ),
-              const SizedBox(height: 24),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const NavigationPage(),
-                      ),
+                      child: Text(
+                    'Versão 1.0.0+1',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Color(0xff34437A),
+                      decoration: TextDecoration.underline,
                     ),
-                  )
+                  )),
                 ],
               ),
             ),
