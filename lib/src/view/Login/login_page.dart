@@ -33,7 +33,7 @@ class _LoginState extends State<Login> {
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
@@ -43,7 +43,6 @@ class _LoginState extends State<Login> {
                       height: 100,
                     ),
                   ),
-                  const Spacer(),
                   const Text('CPF ou CNPJ', textAlign: TextAlign.start),
                   const SizedBox(height: 8),
                   TextFormField(
@@ -82,19 +81,6 @@ class _LoginState extends State<Login> {
                     keyboardType: TextInputType.number,
                     cursorColor: Colors.black12,
                   ),
-                  // Container(
-                  //   alignment: Alignment.centerRight,
-                  //   child: TextButton(
-                  //       onPressed: () {},
-                  //       child: const Text(
-                  //         'Esqueceu sua senha? Clique aqui!',
-                  //         textScaleFactor: 1,
-                  //         style: TextStyle(
-                  //           color: Color(0xff34437A),
-                  //           decoration: TextDecoration.underline,
-                  //         ),
-                  //       )),
-                  // ),
                   const SizedBox(height: 24),
                   SizedBox(
                     width: double.infinity,
@@ -105,22 +91,6 @@ class _LoginState extends State<Login> {
                       child: const Text('Entrar'),
                     ),
                   ),
-                  // const SizedBox(height: 24),
-                  // SizedBox(
-                  //   width: double.infinity,
-                  //   child: ElevatedButton(
-                  //     onPressed: () {},
-                  //     child: const Text('Entrar com gov.br'),
-                  //   ),
-                  // ),
-                  // const Spacer(),
-                  // SizedBox(
-                  //   width: double.infinity,
-                  //   child: OutlinedButton(
-                  //     onPressed: () {},
-                  //     child: const Text('Criar Conta'),
-                  //   ),
-                  // ),
                   const SizedBox(
                     height: 24,
                   ),
@@ -157,10 +127,17 @@ class _LoginState extends State<Login> {
       print(cpfCnpjController.text);
       print(senhaController.text);
 
-      var response = await LoginApi.login(cpfCnpjController.text, senhaController.text);
+      var response =
+          await LoginApi.login(cpfCnpjController.text, senhaController.text);
 
       if (response == true) {
         _navegaHomePage(context);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Dados de login inválidos'),
+          ),
+        );
       }
     }
   }
