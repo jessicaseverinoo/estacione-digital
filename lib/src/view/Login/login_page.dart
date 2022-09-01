@@ -117,16 +117,13 @@ class _LoginState extends State<Login> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => NavigationPage(),
+        builder: (context) => const NavigationPage(),
       ),
     );
   }
 
   void _clickLogin(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
-      print(cpfCnpjController.text);
-      print(senhaController.text);
-
       var response =
           await LoginApi.login(cpfCnpjController.text, senhaController.text);
 

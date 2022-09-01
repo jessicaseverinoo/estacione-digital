@@ -1,7 +1,6 @@
 import 'package:estacione_digital/design_system/colors.dart';
 import 'package:estacione_digital/src/shared/widgets/menu.dart';
 import 'package:estacione_digital/src/view/Home/home_page.dart';
-import 'package:estacione_digital/src/view/Vehicles/add_vehicle_page.dart';
 import 'package:estacione_digital/src/view/Vehicles/vehicle_page.dart';
 import 'package:estacione_digital/src/view/Wallet/wallet_page.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +17,7 @@ class _NavigationPageState extends State<NavigationPage> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
-  static const List<Widget> _widgetOptions = <Widget>[
+  static const List<Widget> _widgetOptions = [
     Home(),
     Wallet(),
     VehiclePage(),
