@@ -96,15 +96,14 @@ class _LoginState extends State<Login> {
                     height: 24,
                   ),
                   const Center(
-                    child: Text(
-                      'Versão 1.0.0+1',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Color(0xff424242),
-                      ),
+                      child: Text(
+                    'Versão 1.0.0+1',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Color(0xff34437A),
+                      decoration: TextDecoration.underline,
                     ),
-                  )
+                  )),
                 ],
               ),
             ),
