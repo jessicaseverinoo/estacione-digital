@@ -1,3 +1,4 @@
+import 'package:estacione_digital/src/model/usuario.dart';
 import 'package:estacione_digital/src/services/login_api.dart';
 import 'package:estacione_digital/src/view/Navigation/navigation_page.dart';
 import 'package:flutter/material.dart';
@@ -86,8 +87,7 @@ class _LoginState extends State<Login> {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-                        // _clickLogin(context);
-                        _navegaHomePage();
+                        _clickLogin(context);
                       },
                       child: const Text('Entrar'),
                     ),
@@ -113,22 +113,16 @@ class _LoginState extends State<Login> {
     );
   }
 
-  void _navegaHomePage() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const NavigationPage(),
-      ),
-    );
-  }
-
   void _clickLogin(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
-      var response =
+      print(cpfCnpjController.text);
+      print(senhaController.text);
+
+      var usuario =
           await LoginApi.login(cpfCnpjController.text, senhaController.text);
 
-      if (response == true) {
-        _navegaHomePage();
+      if (usuario != null) {
+        _navegaHomePage(context, usuario);
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
@@ -137,5 +131,14 @@ class _LoginState extends State<Login> {
         );
       }
     }
+  }
+
+  void _navegaHomePage(BuildContext context, Usuario usuario) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => NavigationPage(usuario: usuario),
+      ),
+    );
   }
 }

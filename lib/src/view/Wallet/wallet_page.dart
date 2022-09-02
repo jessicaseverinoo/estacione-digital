@@ -2,8 +2,8 @@ import 'package:estacione_digital/design_system/colors.dart';
 import 'package:estacione_digital/src/view/Wallet/widgets/card_credit.dart';
 import 'package:flutter/material.dart';
 
-class Wallet extends StatelessWidget {
-  const Wallet({Key? key}) : super(key: key);
+class WalletPage extends StatelessWidget {
+  const WalletPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

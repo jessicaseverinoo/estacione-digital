@@ -1,12 +1,21 @@
 import 'package:estacione_digital/design_system/colors.dart';
+import 'package:estacione_digital/src/model/usuario.dart';
 import 'package:estacione_digital/src/shared/widgets/alert_card.dart';
 import 'package:estacione_digital/src/view/Home/widgets/bottom_sheet_tickets.dart';
 import 'package:estacione_digital/src/view/Home/widgets/timer.dart';
 import 'package:flutter/material.dart';
 
-class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  Usuario usuario;
 
+  HomePage({Key? key, required this.usuario}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  // final Usuario usuario;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -15,7 +24,7 @@ class Home extends StatelessWidget {
         children: [
           Row(
             children: [
-              const Text('Olá, Jessica'),
+              Text('Olá, ${widget.usuario.nome}'),
               const Spacer(),
               ClipRRect(
                 borderRadius: BorderRadius.circular(1000),

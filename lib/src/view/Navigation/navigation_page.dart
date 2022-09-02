@@ -1,4 +1,5 @@
 import 'package:estacione_digital/design_system/colors.dart';
+import 'package:estacione_digital/src/model/usuario.dart';
 import 'package:estacione_digital/src/shared/widgets/menu.dart';
 import 'package:estacione_digital/src/view/Home/home_page.dart';
 import 'package:estacione_digital/src/view/Vehicles/vehicle_page.dart';
@@ -6,7 +7,9 @@ import 'package:estacione_digital/src/view/Wallet/wallet_page.dart';
 import 'package:flutter/material.dart';
 
 class NavigationPage extends StatefulWidget {
-  const NavigationPage({Key? key}) : super(key: key);
+  Usuario usuario;
+
+  NavigationPage({Key? key, required this.usuario}) : super(key: key);
 
   @override
   State<NavigationPage> createState() => _NavigationPageState();
@@ -14,21 +17,22 @@ class NavigationPage extends StatefulWidget {
 
 class _NavigationPageState extends State<NavigationPage> {
   int _selectedIndex = 0;
+
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
-  static const List<Widget> _widgetOptions = [
-    Home(),
-    Wallet(),
-    VehiclePage(),
-    // AddVehiclePage(),
-    Text(
-      'Index 4: School',
-      style: optionStyle,
-    ),
-  ];
+  List<Widget> _pageOptions() => [
+        HomePage(usuario: widget.usuario),
+        WalletPage(),
+        VehiclePage(),
+        // AddVehiclePage(),
+        Text(
+          'Index 4: School',
+          style: optionStyle,
+        ),
+      ];
 
-  void _onItemTapped(int index) {
+void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
@@ -36,6 +40,8 @@ class _NavigationPageState extends State<NavigationPage> {
 
   @override
   Widget build(BuildContext context) {
+    final List<Widget> pageOptions = _pageOptions();
+
     return Scaffold(
       appBar: AppBar(
         leading: Builder(
@@ -61,7 +67,7 @@ class _NavigationPageState extends State<NavigationPage> {
       ),
       drawer: const Menu(),
       body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+        child: pageOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: kPrimary,
