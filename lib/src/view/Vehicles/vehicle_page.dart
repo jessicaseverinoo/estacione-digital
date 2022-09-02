@@ -1,5 +1,5 @@
 import 'package:estacione_digital/src/shared/widgets/error_widget.dart';
-import 'package:estacione_digital/src/view/Vehicles/add_vehicle_page.dart';
+import 'package:estacione_digital/src/view/Vehicles/widget/add_vehicle_bottom_sheet.dart';
 import 'package:estacione_digital/src/view/Vehicles/vehicle_model.dart';
 import 'package:estacione_digital/src/view/Vehicles/vehicle_provider.dart';
 import 'package:estacione_digital/src/view/Vehicles/widget/card_item_widget.dart';
@@ -54,56 +54,19 @@ class VehiclePage extends StatelessWidget {
                 }
               },
             ),
-            //   child: ListView(
-            //     children: const [
-            //       CardItemWidget(
-            //           vehicleType: 'car',
-            //           licensePlate: 'abc-1234',
-            //           favorite: true),
-            //       SizedBox(height: 12),
-            //       CardItemWidget(
-            //           vehicleType: 'truck',
-            //           licensePlate: 'xyz-1111',
-            //           favorite: false),
-            //       SizedBox(height: 12),
-            //       CardItemWidget(
-            //           vehicleType: 'car',
-            //           licensePlate: 'klj-2314',
-            //           favorite: false),
-            //       SizedBox(height: 12),
-            //       CardItemWidget(
-            //           vehicleType: 'buss',
-            //           licensePlate: 'vvlk-1986',
-            //           favorite: false),
-            //       SizedBox(height: 12),
-            //       CardItemWidget(
-            //           vehicleType: 'buss',
-            //           licensePlate: 'vvlk-1986',
-            //           favorite: false),
-            //       SizedBox(height: 12),
-            //       CardItemWidget(
-            //           vehicleType: 'buss',
-            //           licensePlate: 'vvlk-1986',
-            //           favorite: false),
-            //       SizedBox(height: 12),
-            //       CardItemWidget(
-            //           vehicleType: 'buss',
-            //           licensePlate: 'vvlk-1986',
-            //           favorite: false),
-            //     ],
-            //   ),
           ),
           ElevatedButton(
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const AddVehiclePage(),
-                ),
+              showModalBottomSheet<void>(
+                isScrollControlled: true,
+                context: context,
+                builder: (BuildContext context) {
+                  return const AddVehicleBottomSheet();
+                },
               );
             },
             child: const Text('Adicionar Veículo'),
-          )
+          ),
         ],
       ),
     ));
