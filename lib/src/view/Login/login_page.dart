@@ -96,15 +96,14 @@ class _LoginState extends State<Login> {
                     height: 24,
                   ),
                   const Center(
-                    child: Text(
-                      'Versão 1.0.0+1',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Color(0xff424242),
-                      ),
+                      child: Text(
+                    'Versão 1.0.0+1',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Color(0xff34437A),
+                      decoration: TextDecoration.underline,
                     ),
-                  )
+                  )),
                 ],
               ),
             ),
@@ -116,6 +115,8 @@ class _LoginState extends State<Login> {
 
   void _clickLogin(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
+      print(cpfCnpjController.text);
+      print(senhaController.text);
 
       var usuario =
           await LoginApi.login(cpfCnpjController.text, senhaController.text);

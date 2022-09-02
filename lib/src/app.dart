@@ -1,6 +1,4 @@
-import 'package:estacione_digital/src/view/Home/home_page.dart';
 import 'package:estacione_digital/src/view/Login/login_page.dart';
-import 'package:estacione_digital/src/view/Navigation/navigation_page.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
