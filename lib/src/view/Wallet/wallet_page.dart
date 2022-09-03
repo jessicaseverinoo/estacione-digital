@@ -1,10 +1,18 @@
 import 'package:estacione_digital/design_system/colors.dart';
+import 'package:estacione_digital/src/model/user_model.dart';
 import 'package:estacione_digital/src/view/Wallet/widgets/card_credit.dart';
 import 'package:flutter/material.dart';
 
-class WalletPage extends StatelessWidget {
-  const WalletPage({Key? key}) : super(key: key);
+class WalletPage extends StatefulWidget {
+  UserModel userModel;
 
+  WalletPage({Key? key, required this.userModel}) : super(key: key);
+
+  @override
+  State<WalletPage> createState() => _WalletPageState();
+}
+
+class _WalletPageState extends State<WalletPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(

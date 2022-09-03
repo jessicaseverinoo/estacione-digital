@@ -1,14 +1,14 @@
 import 'package:estacione_digital/design_system/colors.dart';
-import 'package:estacione_digital/src/model/usuario.dart';
+import 'package:estacione_digital/src/model/user_model.dart';
 import 'package:estacione_digital/src/shared/widgets/alert_card.dart';
 import 'package:estacione_digital/src/view/Home/widgets/bottom_sheet_tickets.dart';
 import 'package:estacione_digital/src/view/Home/widgets/timer.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
-  Usuario usuario;
+  UserModel userModel;
 
-  HomePage({Key? key, required this.usuario}) : super(key: key);
+  HomePage({Key? key, required this.userModel}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           Row(
             children: [
-              Text('Olá, ${widget.usuario.nome}'),
+              Text('Olá, ${widget.userModel.nome}'),
               const Spacer(),
               ClipRRect(
                 borderRadius: BorderRadius.circular(1000),

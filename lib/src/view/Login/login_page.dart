@@ -1,5 +1,5 @@
-import 'package:estacione_digital/src/model/usuario.dart';
-import 'package:estacione_digital/src/services/login_api.dart';
+import 'package:estacione_digital/src/model/user_model.dart';
+import 'package:estacione_digital/src/services/login_provider.dart';
 import 'package:estacione_digital/src/view/Navigation/navigation_page.dart';
 import 'package:flutter/material.dart';
 
@@ -133,11 +133,11 @@ class _LoginState extends State<Login> {
     }
   }
 
-  void _navegaHomePage(BuildContext context, Usuario usuario) {
+  void _navegaHomePage(BuildContext context, UserModel userModel) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => NavigationPage(usuario: usuario),
+        builder: (context) => NavigationPage(userModel: userModel),
       ),
     );
   }
