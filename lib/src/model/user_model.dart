@@ -1,20 +1,17 @@
 import 'dart:convert';
 
-import 'package:estacione_digital/src/model/veiculo.dart';
+UserModel userModelFromJson(String str) => UserModel.fromJson(json.decode(str));
 
-Usuario usuarioFromJson(String str) => Usuario.fromJson(json.decode(str));
+String userModelToJson(UserModel data) => json.encode(data.toJson());
 
-String usuarioToJson(Usuario data) => json.encode(data.toJson());
-
-class Usuario {
-  Usuario({
+class UserModel {
+  UserModel({
     required this.uuidUsuario,
     required this.cpfCnpj,
     required this.nome,
     required this.email,
     required this.status,
     required this.token,
-    // required this.listVeiculo,
   });
 
   final String uuidUsuario;
@@ -23,16 +20,14 @@ class Usuario {
   final String email;
   final String status;
   final String token;
-  // final List<Veiculo> listVeiculo;
 
-  factory Usuario.fromJson(Map<String, dynamic> json) => Usuario(
+  factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
         uuidUsuario: json["uuidUsuario"],
         cpfCnpj: json["cpfCnpj"],
         nome: json["nome"],
         email: json["email"],
         status: json["status"],
         token: json["token"],
-        // listVeiculo: json["listVeiculo"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -42,6 +37,5 @@ class Usuario {
         "email": email,
         "status": status,
         "token": token,
-        // "listVeiculo": listVeiculo,
       };
 }

@@ -1,5 +1,5 @@
 import 'package:estacione_digital/design_system/colors.dart';
-import 'package:estacione_digital/src/model/usuario.dart';
+import 'package:estacione_digital/src/model/user_model.dart';
 import 'package:estacione_digital/src/shared/widgets/menu.dart';
 import 'package:estacione_digital/src/view/Home/home_page.dart';
 import 'package:estacione_digital/src/view/Vehicles/vehicle_page.dart';
@@ -7,9 +7,9 @@ import 'package:estacione_digital/src/view/Wallet/wallet_page.dart';
 import 'package:flutter/material.dart';
 
 class NavigationPage extends StatefulWidget {
-  Usuario usuario;
+  UserModel userModel;
 
-  NavigationPage({Key? key, required this.usuario}) : super(key: key);
+  NavigationPage({Key? key, required this.userModel}) : super(key: key);
 
   @override
   State<NavigationPage> createState() => _NavigationPageState();
@@ -22,9 +22,9 @@ class _NavigationPageState extends State<NavigationPage> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
   List<Widget> _pageOptions() => [
-        HomePage(usuario: widget.usuario),
-        WalletPage(),
-        VehiclePage(),
+        HomePage(userModel: widget.userModel),
+        WalletPage(userModel: widget.userModel),
+        VehiclePage(userModel: widget.userModel),
         // AddVehiclePage(),
         Text(
           'Index 4: School',
