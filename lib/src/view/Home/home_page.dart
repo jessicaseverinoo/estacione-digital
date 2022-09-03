@@ -6,9 +6,9 @@ import 'package:estacione_digital/src/view/Home/widgets/timer.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
-  UserModel userModel;
+  final UserModel userModel;
 
-  HomePage({Key? key, required this.userModel}) : super(key: key);
+  const HomePage({Key? key, required this.userModel}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();

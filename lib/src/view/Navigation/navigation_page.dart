@@ -7,9 +7,9 @@ import 'package:estacione_digital/src/view/Wallet/wallet_page.dart';
 import 'package:flutter/material.dart';
 
 class NavigationPage extends StatefulWidget {
-  UserModel userModel;
+  final UserModel userModel;
 
-  NavigationPage({Key? key, required this.userModel}) : super(key: key);
+  const NavigationPage({Key? key, required this.userModel}) : super(key: key);
 
   @override
   State<NavigationPage> createState() => _NavigationPageState();
