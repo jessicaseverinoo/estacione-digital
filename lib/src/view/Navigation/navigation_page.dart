@@ -7,9 +7,9 @@ import 'package:estacione_digital/src/view/Wallet/wallet_page.dart';
 import 'package:flutter/material.dart';
 
 class NavigationPage extends StatefulWidget {
-  UserModel userModel;
+  final UserModel userModel;
 
-  NavigationPage({Key? key, required this.userModel}) : super(key: key);
+  const NavigationPage({Key? key, required this.userModel}) : super(key: key);
 
   @override
   State<NavigationPage> createState() => _NavigationPageState();
@@ -18,21 +18,23 @@ class NavigationPage extends StatefulWidget {
 class _NavigationPageState extends State<NavigationPage> {
   int _selectedIndex = 0;
 
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-
   List<Widget> _pageOptions() => [
         HomePage(userModel: widget.userModel),
         WalletPage(userModel: widget.userModel),
         VehiclePage(userModel: widget.userModel),
-        // AddVehiclePage(),
-        Text(
+        const Text(
           'Index 4: School',
-          style: optionStyle,
         ),
       ];
 
-void _onItemTapped(int index) {
+  static const Map<int, String> _titlePages = {
+    0: "Início",
+    1: "Carteira",
+    2: "Veículos",
+    3: "Perfil"
+  };
+
+  void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
@@ -55,13 +57,12 @@ void _onItemTapped(int index) {
             );
           },
         ),
+        title: Text(_titlePages[_selectedIndex].toString()),
         actions: [
           IconButton(
             icon: const Icon(Icons.notifications),
             tooltip: 'Abrir notificações',
-            onPressed: () {
-              // handle the press
-            },
+            onPressed: () {},
           ),
         ],
       ),
@@ -74,11 +75,12 @@ void _onItemTapped(int index) {
         showSelectedLabels: true,
         showUnselectedLabels: true,
         unselectedItemColor: kCoolGrey,
-        selectedFontSize: 12,
-        unselectedFontSize: 12,
         selectedLabelStyle: const TextStyle(color: kPrimary),
         selectedIconTheme: const IconThemeData(color: kPrimary),
         unselectedLabelStyle: const TextStyle(color: kCoolGrey),
+        currentIndex: _selectedIndex,
+        selectedItemColor: kPrimary,
+        onTap: _onItemTapped,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home_rounded),
@@ -97,9 +99,6 @@ void _onItemTapped(int index) {
             label: 'Perfil',
           ),
         ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: kPrimary,
-        onTap: _onItemTapped,
       ),
     );
   }

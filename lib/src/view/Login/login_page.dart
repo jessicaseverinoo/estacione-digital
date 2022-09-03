@@ -1,5 +1,5 @@
 import 'package:estacione_digital/src/model/user_model.dart';
-import 'package:estacione_digital/src/services/login_provider.dart';
+import 'package:estacione_digital/src/view/Login/login_provider.dart';
 import 'package:estacione_digital/src/view/Navigation/navigation_page.dart';
 import 'package:flutter/material.dart';
 
@@ -115,9 +115,6 @@ class _LoginState extends State<Login> {
 
   void _clickLogin(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
-      print(cpfCnpjController.text);
-      print(senhaController.text);
-
       var usuario =
           await LoginApi.login(cpfCnpjController.text, senhaController.text);
 

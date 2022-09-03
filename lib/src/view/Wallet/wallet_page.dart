@@ -4,9 +4,9 @@ import 'package:estacione_digital/src/view/Wallet/widgets/card_credit.dart';
 import 'package:flutter/material.dart';
 
 class WalletPage extends StatefulWidget {
-  UserModel userModel;
+  final UserModel userModel;
 
-  WalletPage({Key? key, required this.userModel}) : super(key: key);
+  const WalletPage({Key? key, required this.userModel}) : super(key: key);
 
   @override
   State<WalletPage> createState() => _WalletPageState();

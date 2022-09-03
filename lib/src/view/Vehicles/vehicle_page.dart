@@ -1,15 +1,15 @@
 import 'package:estacione_digital/src/model/user_model.dart';
-import 'package:estacione_digital/src/model/vehicle_model.dart';
-import 'package:estacione_digital/src/services/vehicle_provider.dart';
+import 'package:estacione_digital/src/view/Vehicles/vehicle_model.dart';
+import 'package:estacione_digital/src/view/Vehicles/vehicle_provider.dart';
 import 'package:estacione_digital/src/shared/widgets/error_widget.dart';
-import 'package:estacione_digital/src/view/Vehicles/widget/add_vehicle_bottom_sheet.dart';
-import 'package:estacione_digital/src/view/Vehicles/widget/vehicle_item_widget.dart';
+import 'package:estacione_digital/src/view/Vehicles/widgets/add_vehicle/add_vehicle_bottom_sheet.dart';
+import 'package:estacione_digital/src/view/Vehicles/widgets/vehicle_item_widget.dart';
 import 'package:flutter/material.dart';
 
 class VehiclePage extends StatefulWidget {
-  UserModel userModel;
+  final UserModel userModel;
 
-  VehiclePage({Key? key, required this.userModel}) : super(key: key);
+  const VehiclePage({Key? key, required this.userModel}) : super(key: key);
 
   @override
   State<VehiclePage> createState() => _VehiclePageState();

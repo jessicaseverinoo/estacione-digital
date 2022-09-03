@@ -1,14 +1,13 @@
 import 'package:estacione_digital/design_system/colors.dart';
-import 'package:estacione_digital/src/model/vehicle_model.dart';
+import 'package:estacione_digital/src/view/Vehicles/vehicle_model.dart';
 import 'package:estacione_digital/src/view/Vehicles/helpers/list_icons_vehicles.dart';
 import 'package:flutter/material.dart';
 
 class VehicleItemWidget extends StatefulWidget {
-
   final VehicleModel vehicleModel;
 
-
-  VehicleItemWidget({Key? key, required this.vehicleModel}) : super(key: key);
+  const VehicleItemWidget({Key? key, required this.vehicleModel})
+      : super(key: key);
 
   @override
   State<VehicleItemWidget> createState() => _VehicleItemWidgetState();
@@ -17,7 +16,7 @@ class VehicleItemWidget extends StatefulWidget {
 class _VehicleItemWidgetState extends State<VehicleItemWidget> {
   @override
   Widget build(BuildContext context) {
-    bool _lightIsOn = widget.vehicleModel.favorito;
+    bool isFavoriteVehicle = widget.vehicleModel.favorito;
 
     return Card(
       elevation: 5,
@@ -39,7 +38,7 @@ class _VehicleItemWidgetState extends State<VehicleItemWidget> {
             IconButton(
               onPressed: () {
                 setState(() {
-                  _lightIsOn = !widget.vehicleModel.favorito;
+                  isFavoriteVehicle = !widget.vehicleModel.favorito;
                 });
               },
               icon: Icon(Icons.star,
