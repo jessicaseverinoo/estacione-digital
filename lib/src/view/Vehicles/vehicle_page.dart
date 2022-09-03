@@ -3,7 +3,7 @@ import 'package:estacione_digital/src/model/vehicle_model.dart';
 import 'package:estacione_digital/src/services/vehicle_provider.dart';
 import 'package:estacione_digital/src/shared/widgets/error_widget.dart';
 import 'package:estacione_digital/src/view/Vehicles/widget/add_vehicle_bottom_sheet.dart';
-import 'package:estacione_digital/src/view/Vehicles/widget/card_item_widget.dart';
+import 'package:estacione_digital/src/view/Vehicles/widget/vehicle_item_widget.dart';
 import 'package:flutter/material.dart';
 
 class VehiclePage extends StatefulWidget {
@@ -45,10 +45,8 @@ class _VehiclePageState extends State<VehiclePage> {
                   return ListView(
                     children: vehicles
                         .map(
-                          (VehicleModel vehicle) => CardItemWidget(
-                              vehicleType: vehicle.tipoVeiculo,
-                              licensePlate: vehicle.placa,
-                              favorite: vehicle.favorito),
+                          (VehicleModel vehicleModel) =>
+                              VehicleItemWidget(vehicleModel: vehicleModel),
                         )
                         .toList(),
                   );

@@ -1,27 +1,23 @@
 import 'package:estacione_digital/design_system/colors.dart';
+import 'package:estacione_digital/src/model/vehicle_model.dart';
 import 'package:estacione_digital/src/view/Vehicles/helpers/list_icons_vehicles.dart';
 import 'package:flutter/material.dart';
 
-class CardItemWidget extends StatefulWidget {
-  final String vehicleType;
-  final String licensePlate;
-  final bool favorite;
+class VehicleItemWidget extends StatefulWidget {
 
-  const CardItemWidget(
-      {Key? key,
-      required this.vehicleType,
-      required this.licensePlate,
-      required this.favorite})
-      : super(key: key);
+  final VehicleModel vehicleModel;
+
+
+  VehicleItemWidget({Key? key, required this.vehicleModel}) : super(key: key);
 
   @override
-  State<CardItemWidget> createState() => _CardItemWidgetState();
+  State<VehicleItemWidget> createState() => _VehicleItemWidgetState();
 }
 
-class _CardItemWidgetState extends State<CardItemWidget> {
+class _VehicleItemWidgetState extends State<VehicleItemWidget> {
   @override
   Widget build(BuildContext context) {
-    bool _lightIsOn = widget.favorite;
+    bool _lightIsOn = widget.vehicleModel.favorito;
 
     return Card(
       elevation: 5,
@@ -30,12 +26,12 @@ class _CardItemWidgetState extends State<CardItemWidget> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            listIconsVehicles[widget.vehicleType],
+            listIconsVehicles[widget.vehicleModel.tipoVeiculo],
             const SizedBox(
               width: 8,
             ),
             Text(
-              widget.licensePlate,
+              widget.vehicleModel.placa,
               style: const TextStyle(
                   fontSize: 16, color: kDark, fontWeight: FontWeight.w600),
             ),
@@ -43,11 +39,11 @@ class _CardItemWidgetState extends State<CardItemWidget> {
             IconButton(
               onPressed: () {
                 setState(() {
-                  _lightIsOn = !widget.favorite;
+                  _lightIsOn = !widget.vehicleModel.favorito;
                 });
               },
               icon: Icon(Icons.star,
-                  color: widget.favorite == true ? kAlert : kDark),
+                  color: widget.vehicleModel.favorito == true ? kAlert : kDark),
             ),
             IconButton(
               onPressed: () {},
