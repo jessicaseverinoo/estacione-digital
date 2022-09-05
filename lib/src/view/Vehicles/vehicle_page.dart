@@ -19,6 +19,7 @@ class _VehiclePageState extends State<VehiclePage> {
   @override
   Widget build(BuildContext context) {
     final VehiclesProvider vehiclesProvider = VehiclesProvider();
+
     return SafeArea(
         child: Padding(
       padding: const EdgeInsets.all(16.0),
@@ -37,7 +38,8 @@ class _VehiclePageState extends State<VehiclePage> {
           const SizedBox(height: 24),
           Expanded(
             child: FutureBuilder(
-              future: vehiclesProvider.getVehicles(widget.userModel),
+              future:
+                  vehiclesProvider.getVehicles(widget.userModel.uuidUsuario),
               builder: (BuildContext context,
                   AsyncSnapshot<List<VehicleModel>> snapshot) {
                 if (snapshot.hasData) {
@@ -67,7 +69,9 @@ class _VehiclePageState extends State<VehiclePage> {
                 isScrollControlled: true,
                 context: context,
                 builder: (BuildContext context) {
-                  return const AddVehicleBottomSheet();
+                  return AddVehicleBottomSheet(
+                    uuidUser: widget.userModel.uuidUsuario,
+                  );
                 },
               );
             },
