@@ -3,7 +3,7 @@ import 'dart:convert' as convert;
 import 'package:estacione_digital/src/model/user_model.dart';
 import 'package:http/http.dart' as http;
 
-class LoginApi {
+class LoginProvider {
   static Future<UserModel?> login(String user, String password) async {
     Map params = {"cpfCnpj": user, "senha": password};
 

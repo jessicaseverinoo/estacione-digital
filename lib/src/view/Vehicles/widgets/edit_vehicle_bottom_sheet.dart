@@ -4,23 +4,24 @@ import 'package:estacione_digital/src/view/Vehicles/vehicle_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class AddVehicleBottomSheet extends StatefulWidget {
+class EditVehicleBottomSheet extends StatefulWidget {
   final String uuidUser;
-  const AddVehicleBottomSheet({Key? key, required this.uuidUser})
-      : super(key: key);
+  final VehicleModel vehicleModel;
+
+  const EditVehicleBottomSheet({
+    Key? key,
+    required this.uuidUser,
+    required this.vehicleModel,
+  }) : super(key: key);
 
   @override
-  State<AddVehicleBottomSheet> createState() => _AddVehicleBottomSheetState();
+  State<EditVehicleBottomSheet> createState() => _EditVehicleBottomSheetState();
 }
 
-class _AddVehicleBottomSheetState extends State<AddVehicleBottomSheet> {
+class _EditVehicleBottomSheetState extends State<EditVehicleBottomSheet> {
+  final _formKey = GlobalKey<FormState>();
   bool _isSelectedFavorite = false;
   bool _isSelectedTypeVehicle = false;
-
-  TextEditingController placaVeiculoController = TextEditingController();
-  TextEditingController modeloVeiculoController = TextEditingController();
-
-  final _formKey = GlobalKey<FormState>();
 
   bool valueValidator(String? value) {
     if (value != null && value.isEmpty) {
@@ -31,14 +32,10 @@ class _AddVehicleBottomSheetState extends State<AddVehicleBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
-    final VehiclesProvider vehiclesProvider = VehiclesProvider();
-    final VehicleModel vehicle = VehicleModel(
-      uuidVeiculo: widget.uuidUser,
-      placa: 'LKJ-2785',
-      modelo: 'Mercedes Benz',
-      favorito: true,
-      tipoVeiculo: 'CAMINHAO',
-    );
+    TextEditingController placaVeiculoController =
+        TextEditingController(text: widget.vehicleModel.placa);
+    TextEditingController modeloVeiculoController =
+        TextEditingController(text: widget.vehicleModel.modelo);
 
     return Container(
       height: MediaQuery.of(context).size.height * 0.85,
@@ -56,18 +53,12 @@ class _AddVehicleBottomSheetState extends State<AddVehicleBottomSheet> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const Text(
-                'Placa do veículo',
-                style: TextStyle(color: kCoolGrey, fontSize: 15),
+              Text(
+                widget.vehicleModel.placa,
+                style: const TextStyle(color: kCoolGrey, fontSize: 15),
               ),
               const SizedBox(height: 8),
               TextFormField(
-                validator: (String? value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Insira a placa do veículo';
-                  }
-                  return null;
-                },
                 controller: placaVeiculoController,
                 textAlign: TextAlign.left,
                 decoration: const InputDecoration(
@@ -83,12 +74,6 @@ class _AddVehicleBottomSheetState extends State<AddVehicleBottomSheet> {
               ),
               const SizedBox(height: 8),
               TextFormField(
-                validator: (String? value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Insira a placa do veículo';
-                  }
-                  return null;
-                },
                 controller: modeloVeiculoController,
                 textAlign: TextAlign.left,
                 decoration: const InputDecoration(
@@ -106,7 +91,7 @@ class _AddVehicleBottomSheetState extends State<AddVehicleBottomSheet> {
                   ),
                   const Spacer(),
                   CupertinoSwitch(
-                    value: _isSelectedFavorite,
+                    value: widget.vehicleModel.favorito || _isSelectedFavorite,
                     onChanged: (bool value) {
                       setState(() {
                         _isSelectedFavorite = value;
@@ -185,7 +170,7 @@ class _AddVehicleBottomSheetState extends State<AddVehicleBottomSheet> {
               ElevatedButton(
                 onPressed: () async {
                   VehicleModel payload = VehicleModel(
-                    uuidVeiculo: widget.uuidUser,
+                    uuidVeiculo: widget.vehicleModel.uuidVeiculo,
                     placa: placaVeiculoController.text,
                     modelo: modeloVeiculoController.text,
                     favorito: _isSelectedFavorite,
@@ -193,14 +178,14 @@ class _AddVehicleBottomSheetState extends State<AddVehicleBottomSheet> {
                   );
 
                   if (_formKey.currentState!.validate()) {
-                    final addVehicle = await vehiclesProvider.createVehicles(
+                    final addVehicle = await VehiclesProvider.updateVehicles(
                       uuidUser: widget.uuidUser,
                       vehicle: payload,
                     );
 
                     if (_formKey.currentState!.validate()) {
                       Navigator.pop(context);
-                      vehiclesProvider.getVehicles(widget.uuidUser);
+                      VehiclesProvider.getVehicles(widget.uuidUser);
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
@@ -210,7 +195,7 @@ class _AddVehicleBottomSheetState extends State<AddVehicleBottomSheet> {
                     }
                   }
                 },
-                child: const Text('Confirmar'),
+                child: const Text('Salvar'),
               )
             ],
           ),
