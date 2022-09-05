@@ -49,7 +49,36 @@ class VehiclesProvider {
       );
 
       if (response.statusCode == 200) {
-        // return VehicleModel.fromJson(json.decode(response.body));
+      } else {
+        throw Exception('Failed to create vehicle');
+      }
+    } catch (error) {
+      throw Exception('Failed to create vehicle $error');
+    }
+  }
+
+  Future updateVehicles(
+      {required String uuidUser, required VehicleModel vehicle}) async {
+    try {
+      final url = Uri.http(
+          API_BASE_URL, 'usuarios/$uuidUser/veiculos/${vehicle.uuidVeiculo}');
+
+      print("usuarios/$uuidUser/veiculos/${vehicle.uuidVeiculo}");
+
+      var response = await http.patch(
+        url,
+        headers: HEADER,
+        body: jsonEncode(
+          <String, dynamic>{
+            "placa": vehicle.placa,
+            "modelo": vehicle.modelo,
+            "favorito": vehicle.favorito,
+            "tipoVeiculo": vehicle.tipoVeiculo,
+          },
+        ),
+      );
+
+      if (response.statusCode == 200) {
       } else {
         throw Exception('Failed to create vehicle');
       }

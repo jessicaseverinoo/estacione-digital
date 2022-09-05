@@ -2,7 +2,7 @@ import 'package:estacione_digital/src/model/user_model.dart';
 import 'package:estacione_digital/src/view/Vehicles/vehicle_model.dart';
 import 'package:estacione_digital/src/view/Vehicles/vehicle_provider.dart';
 import 'package:estacione_digital/src/shared/widgets/error_widget.dart';
-import 'package:estacione_digital/src/view/Vehicles/widgets/add_vehicle/add_vehicle_bottom_sheet.dart';
+import 'package:estacione_digital/src/view/Vehicles/widgets/add_vehicle_bottom_sheet.dart';
 import 'package:estacione_digital/src/view/Vehicles/widgets/vehicle_item_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -47,8 +47,10 @@ class _VehiclePageState extends State<VehiclePage> {
                   return ListView(
                     children: vehicles
                         .map(
-                          (VehicleModel vehicleModel) =>
-                              VehicleItemWidget(vehicleModel: vehicleModel),
+                          (VehicleModel vehicleModel) => VehicleItemWidget(
+                            uuidUser: widget.userModel.uuidUsuario,
+                            vehicleModel: vehicleModel,
+                          ),
                         )
                         .toList(),
                   );

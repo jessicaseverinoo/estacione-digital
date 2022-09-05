@@ -1,12 +1,15 @@
 import 'package:estacione_digital/design_system/colors.dart';
 import 'package:estacione_digital/src/view/Vehicles/vehicle_model.dart';
 import 'package:estacione_digital/src/shared/helpers/list_icons_vehicles.dart';
+import 'package:estacione_digital/src/view/Vehicles/widgets/edit_vehicle_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 
 class VehicleItemWidget extends StatefulWidget {
   final VehicleModel vehicleModel;
+  final String uuidUser;
 
-  const VehicleItemWidget({Key? key, required this.vehicleModel})
+  const VehicleItemWidget(
+      {Key? key, required this.vehicleModel, required this.uuidUser})
       : super(key: key);
 
   @override
@@ -45,7 +48,24 @@ class _VehicleItemWidgetState extends State<VehicleItemWidget> {
                   color: widget.vehicleModel.favorito == true ? kAlert : kDark),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                showModalBottomSheet<void>(
+                  isScrollControlled: true,
+                  context: context,
+                  builder: (BuildContext context) {
+                    return EditVehicleBottomSheet(
+                      uuidUser: widget.uuidUser,
+                      vehicleModel: VehicleModel(
+                        uuidVeiculo: widget.vehicleModel.uuidVeiculo,
+                        placa: widget.vehicleModel.placa,
+                        modelo: widget.vehicleModel.modelo,
+                        favorito: widget.vehicleModel.favorito,
+                        tipoVeiculo: widget.vehicleModel.tipoVeiculo,
+                      ),
+                    );
+                  },
+                );
+              },
               icon: const Icon(
                 Icons.edit,
                 color: kDark,
@@ -53,7 +73,7 @@ class _VehicleItemWidgetState extends State<VehicleItemWidget> {
             ),
             IconButton(
               onPressed: () {
-                _showMyDialog(context);
+                _showDeleteVehicle(context);
               },
               icon: const Icon(
                 Icons.delete,
@@ -66,10 +86,10 @@ class _VehicleItemWidgetState extends State<VehicleItemWidget> {
     );
   }
 
-  Future<void> _showMyDialog(context) async {
+  Future<void> _showDeleteVehicle(context) async {
     return showDialog<void>(
       context: context,
-      barrierDismissible: false, // user must tap button!
+      barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('Apagar veículo'),
