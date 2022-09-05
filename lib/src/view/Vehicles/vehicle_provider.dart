@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:estacione_digital/src/model/user_model.dart';
+
 import 'package:estacione_digital/src/view/Vehicles/vehicle_model.dart';
 import 'package:http/http.dart' as http;
 
@@ -55,6 +55,22 @@ class VehiclesProvider {
       }
     } catch (error) {
       throw Exception('Failed to create vehicle $error');
+    }
+  }
+
+  Future deleteVehicles(
+      {required String uuidUser, required String uuidVeiculo}) async {
+    try {
+      final url =
+          Uri.http(API_BASE_URL, 'usuarios/$uuidUser/veiculos/$uuidVeiculo');
+
+      var response = await http.delete(url);
+
+      if (response.statusCode != 200) {
+        throw Exception('Failed to delete vehicle');
+      }
+    } catch (error) {
+      throw Exception('Failed to delete vehicle $error');
     }
   }
 }
