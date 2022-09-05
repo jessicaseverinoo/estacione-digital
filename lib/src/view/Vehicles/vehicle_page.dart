@@ -27,15 +27,15 @@ class _VehiclePageState extends State<VehiclePage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          const TextField(
-            autofocus: true,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              prefixIcon: Icon(Icons.search_rounded),
-              hintText: 'Pesquisar veículo',
-            ),
-          ),
-          const SizedBox(height: 24),
+          // const TextField(
+          //   autofocus: true,
+          //   decoration: InputDecoration(
+          //     border: OutlineInputBorder(),
+          //     prefixIcon: Icon(Icons.search_rounded),
+          //     hintText: 'Pesquisar veículo',
+          //   ),
+          // ),
+          // const SizedBox(height: 24),
           Expanded(
             child: FutureBuilder(
               future:
@@ -48,7 +48,7 @@ class _VehiclePageState extends State<VehiclePage> {
                     children: vehicles
                         .map(
                           (VehicleModel vehicleModel) =>
-                              VehicleItemWidget(vehicleModel: vehicleModel),
+                              VehicleItemWidget(vehicleModel: vehicleModel,userModel: widget.userModel),
                         )
                         .toList(),
                   );

@@ -1,12 +1,16 @@
 import 'package:estacione_digital/design_system/colors.dart';
-import 'package:estacione_digital/src/view/Vehicles/vehicle_model.dart';
+import 'package:estacione_digital/src/model/user_model.dart';
 import 'package:estacione_digital/src/shared/helpers/list_icons_vehicles.dart';
+import 'package:estacione_digital/src/view/Vehicles/vehicle_model.dart';
+import 'package:estacione_digital/src/view/Vehicles/vehicle_provider.dart';
 import 'package:flutter/material.dart';
 
 class VehicleItemWidget extends StatefulWidget {
   final VehicleModel vehicleModel;
+  final UserModel userModel;
 
-  const VehicleItemWidget({Key? key, required this.vehicleModel})
+  const VehicleItemWidget(
+      {Key? key, required this.vehicleModel, required this.userModel})
       : super(key: key);
 
   @override
@@ -16,6 +20,7 @@ class VehicleItemWidget extends StatefulWidget {
 class _VehicleItemWidgetState extends State<VehicleItemWidget> {
   @override
   Widget build(BuildContext context) {
+    final VehiclesProvider vehiclesProvider = VehiclesProvider();
     bool isFavoriteVehicle = widget.vehicleModel.favorito;
 
     return Card(
@@ -53,7 +58,8 @@ class _VehicleItemWidgetState extends State<VehicleItemWidget> {
             ),
             IconButton(
               onPressed: () {
-                _showMyDialog(context);
+                _showMyDialog(context, widget.vehicleModel, widget.userModel,
+                    vehiclesProvider);
               },
               icon: const Icon(
                 Icons.delete,
@@ -66,7 +72,8 @@ class _VehicleItemWidgetState extends State<VehicleItemWidget> {
     );
   }
 
-  Future<void> _showMyDialog(context) async {
+  Future<void> _showMyDialog(context, VehicleModel vehicleModel,
+      UserModel userModel, VehiclesProvider vehiclesProvider) async {
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
@@ -90,12 +97,19 @@ class _VehicleItemWidgetState extends State<VehicleItemWidget> {
             TextButton(
               child: const Text('Confirmar'),
               onPressed: () {
-                Navigator.of(context).pop();
+                _deleteVehicles(vehicleModel, userModel, vehiclesProvider);
               },
             ),
           ],
         );
       },
     );
+  }
+
+  void _deleteVehicles(VehicleModel vehicleModel, UserModel userModel,
+      VehiclesProvider vehiclesProvider) {
+    vehiclesProvider.deleteVehicles(
+        uuidUser: userModel.uuidUsuario, uuidVeiculo: vehicleModel.uuidVeiculo);
+    Navigator.of(context).pop();
   }
 }
