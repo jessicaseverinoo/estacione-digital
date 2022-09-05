@@ -3,6 +3,7 @@ import 'package:estacione_digital/src/model/user_model.dart';
 import 'package:estacione_digital/src/shared/helpers/list_icons_vehicles.dart';
 import 'package:estacione_digital/src/view/Vehicles/vehicle_model.dart';
 import 'package:estacione_digital/src/view/Vehicles/vehicle_provider.dart';
+import 'package:estacione_digital/src/view/Vehicles/widgets/edit_vehicle_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 
 class VehicleItemWidget extends StatefulWidget {
@@ -20,7 +21,6 @@ class VehicleItemWidget extends StatefulWidget {
 class _VehicleItemWidgetState extends State<VehicleItemWidget> {
   @override
   Widget build(BuildContext context) {
-    final VehiclesProvider vehiclesProvider = VehiclesProvider();
     bool isFavoriteVehicle = widget.vehicleModel.favorito;
 
     return Card(
@@ -50,7 +50,24 @@ class _VehicleItemWidgetState extends State<VehicleItemWidget> {
                   color: widget.vehicleModel.favorito == true ? kAlert : kDark),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                showModalBottomSheet<void>(
+                  isScrollControlled: true,
+                  context: context,
+                  builder: (BuildContext context) {
+                    return EditVehicleBottomSheet(
+                      uuidUser: widget.userModel.uuidUsuario,
+                      vehicleModel: VehicleModel(
+                        uuidVeiculo: widget.vehicleModel.uuidVeiculo,
+                        placa: widget.vehicleModel.placa,
+                        modelo: widget.vehicleModel.modelo,
+                        favorito: widget.vehicleModel.favorito,
+                        tipoVeiculo: widget.vehicleModel.tipoVeiculo,
+                      ),
+                    );
+                  },
+                );
+              },
               icon: const Icon(
                 Icons.edit,
                 color: kDark,
@@ -58,8 +75,8 @@ class _VehicleItemWidgetState extends State<VehicleItemWidget> {
             ),
             IconButton(
               onPressed: () {
-                _showMyDialog(context, widget.vehicleModel, widget.userModel,
-                    vehiclesProvider);
+                _showMyDialogDelete(
+                    context, widget.vehicleModel, widget.userModel);
               },
               icon: const Icon(
                 Icons.delete,
@@ -72,11 +89,11 @@ class _VehicleItemWidgetState extends State<VehicleItemWidget> {
     );
   }
 
-  Future<void> _showMyDialog(context, VehicleModel vehicleModel,
-      UserModel userModel, VehiclesProvider vehiclesProvider) async {
+  Future<void> _showMyDialogDelete(
+      context, VehicleModel vehicleModel, UserModel userModel) async {
     return showDialog<void>(
       context: context,
-      barrierDismissible: false, // user must tap button!
+      barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('Apagar veículo'),
@@ -97,7 +114,7 @@ class _VehicleItemWidgetState extends State<VehicleItemWidget> {
             TextButton(
               child: const Text('Confirmar'),
               onPressed: () {
-                _deleteVehicles(vehicleModel, userModel, vehiclesProvider);
+                _deleteVehicles(vehicleModel, userModel);
               },
             ),
           ],
@@ -106,9 +123,8 @@ class _VehicleItemWidgetState extends State<VehicleItemWidget> {
     );
   }
 
-  void _deleteVehicles(VehicleModel vehicleModel, UserModel userModel,
-      VehiclesProvider vehiclesProvider) {
-    vehiclesProvider.deleteVehicles(
+  void _deleteVehicles(VehicleModel vehicleModel, UserModel userModel) {
+    VehiclesProvider.deleteVehicles(
         uuidUser: userModel.uuidUsuario, uuidVeiculo: vehicleModel.uuidVeiculo);
     Navigator.of(context).pop();
   }

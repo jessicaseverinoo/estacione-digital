@@ -115,8 +115,8 @@ class _LoginState extends State<Login> {
 
   void _clickLogin(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
-      var usuario =
-          await LoginApi.login(cpfCnpjController.text, senhaController.text);
+      var usuario = await LoginProvider.login(
+          cpfCnpjController.text, senhaController.text);
 
       if (usuario != null) {
         _navegaHomePage(context, usuario);
