@@ -198,10 +198,6 @@ class _AddVehicleBottomSheetState extends State<AddVehicleBottomSheet> {
                       vehicle: payload,
                     );
 
-                    // if (payload.favorito != null &&
-                    //     payload.placa.isNotEmpty &&
-                    //     payload.modelo.isNotEmpty &&
-                    //     payload.tipoVeiculo.isNotEmpty) {
                     if (_formKey.currentState!.validate()) {
                       Navigator.pop(context);
                       vehiclesProvider.getVehicles(widget.uuidUser);
@@ -213,7 +209,6 @@ class _AddVehicleBottomSheetState extends State<AddVehicleBottomSheet> {
                       );
                     }
                   }
-                  // Navigator.pop(context);
                 },
                 child: const Text('Confirmar'),
               )
