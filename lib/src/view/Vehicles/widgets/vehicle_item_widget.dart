@@ -1,6 +1,6 @@
 import 'package:estacione_digital/design_system/colors.dart';
 import 'package:estacione_digital/src/view/Vehicles/vehicle_model.dart';
-import 'package:estacione_digital/src/view/Vehicles/helpers/list_icons_vehicles.dart';
+import 'package:estacione_digital/src/shared/helpers/list_icons_vehicles.dart';
 import 'package:flutter/material.dart';
 
 class VehicleItemWidget extends StatefulWidget {
