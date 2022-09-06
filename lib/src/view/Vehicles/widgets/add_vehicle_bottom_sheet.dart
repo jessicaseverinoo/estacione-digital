@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 class AddVehicleBottomSheet extends StatefulWidget {
   final String uuidUser;
+
   const AddVehicleBottomSheet({Key? key, required this.uuidUser})
       : super(key: key);
 
@@ -15,7 +16,9 @@ class AddVehicleBottomSheet extends StatefulWidget {
 
 class _AddVehicleBottomSheetState extends State<AddVehicleBottomSheet> {
   bool _isSelectedFavorite = false;
-  bool _isSelectedTypeVehicle = false;
+  bool _isSelectedTypeVehicleCar = false;
+  bool _isSelectedTypeVehicleBuss = false;
+  bool _isSelectedTypeVehicleTruck = false;
 
   TextEditingController placaVeiculoController = TextEditingController();
   TextEditingController modeloVeiculoController = TextEditingController();
@@ -117,13 +120,15 @@ class _AddVehicleBottomSheetState extends State<AddVehicleBottomSheet> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        _isSelectedTypeVehicle = !_isSelectedTypeVehicle;
+                        _isSelectedTypeVehicleCar = !_isSelectedTypeVehicleCar;
+                        _isSelectedTypeVehicleBuss = false;
+                        _isSelectedTypeVehicleTruck = false;
                       });
                     },
                     child: Column(
                       children: [
                         Image(
-                          image: AssetImage(_isSelectedTypeVehicle
+                          image: AssetImage(_isSelectedTypeVehicleCar
                               ? 'assets/icons/car_on.png'
                               : 'assets/icons/car_off.png'),
                           height: 64,
@@ -136,13 +141,16 @@ class _AddVehicleBottomSheetState extends State<AddVehicleBottomSheet> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        _isSelectedTypeVehicle = !_isSelectedTypeVehicle;
+                        _isSelectedTypeVehicleTruck =
+                            !_isSelectedTypeVehicleTruck;
+                        _isSelectedTypeVehicleCar = false;
+                        _isSelectedTypeVehicleBuss = false;
                       });
                     },
                     child: Column(
                       children: [
                         Image(
-                          image: AssetImage(_isSelectedTypeVehicle
+                          image: AssetImage(_isSelectedTypeVehicleTruck
                               ? 'assets/icons/truck_on.png'
                               : 'assets/icons/truck_off.png'),
                           height: 64,
@@ -155,13 +163,16 @@ class _AddVehicleBottomSheetState extends State<AddVehicleBottomSheet> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        _isSelectedTypeVehicle = !_isSelectedTypeVehicle;
+                        _isSelectedTypeVehicleBuss =
+                            !_isSelectedTypeVehicleBuss;
+                        _isSelectedTypeVehicleCar = false;
+                        _isSelectedTypeVehicleTruck = false;
                       });
                     },
                     child: Column(
                       children: [
                         Image(
-                          image: AssetImage(_isSelectedTypeVehicle
+                          image: AssetImage(_isSelectedTypeVehicleBuss
                               ? 'assets/icons/buss_on.png'
                               : 'assets/icons/buss_off.png'),
                           height: 64,
@@ -180,7 +191,10 @@ class _AddVehicleBottomSheetState extends State<AddVehicleBottomSheet> {
                     placa: placaVeiculoController.text,
                     modelo: modeloVeiculoController.text,
                     favorito: _isSelectedFavorite,
-                    tipoVeiculo: 'CARRO',
+                    tipoVeiculo: _getTypeVehicle(
+                        _isSelectedTypeVehicleCar,
+                        _isSelectedTypeVehicleBuss,
+                        _isSelectedTypeVehicleTruck),
                   );
 
                   if (_formKey.currentState!.validate()) {
@@ -208,5 +222,19 @@ class _AddVehicleBottomSheetState extends State<AddVehicleBottomSheet> {
         ),
       ),
     );
+  }
+
+  String _getTypeVehicle(bool isSelectedTypeVehicleCar,
+      bool isSelectedTypeVehicleBuss, bool isSelectedTypeVehicleTruck) {
+    if (_isSelectedTypeVehicleTruck) {
+      return 'CAMINHAO';
+    }
+    if (_isSelectedTypeVehicleCar) {
+      return 'CARRO';
+    }
+    if (_isSelectedTypeVehicleBuss) {
+      return 'ONIBUS';
+    }
+    return '';
   }
 }
