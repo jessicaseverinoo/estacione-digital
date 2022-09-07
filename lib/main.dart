@@ -1,6 +1,10 @@
 import 'package:estacione_digital/design_system/light_theme.dart';
 import 'package:estacione_digital/src/app.dart';
 import 'package:estacione_digital/src/pages/Vehicles/vehicle_provider.dart';
+<<<<<<< HEAD
+=======
+import 'package:estacione_digital/src/view/Vehicles/vehicle_provider.dart';
+>>>>>>> 124dbd5 (change name title app to Estacione Digital)
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
