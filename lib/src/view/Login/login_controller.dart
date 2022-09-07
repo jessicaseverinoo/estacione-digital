@@ -1,12 +1,12 @@
-import 'package:estacione_digital/src/model/user_model.dart';
+import 'package:estacione_digital/src/shared/models/user_model.dart';
 import 'package:estacione_digital/src/view/Login/login_provider.dart';
 import 'package:estacione_digital/src/view/Navigation/navigation_page.dart';
 import 'package:flutter/material.dart';
 
 class LoginController {
+  final formKey = GlobalKey<FormState>();
   TextEditingController cpfCnpjController = TextEditingController();
   TextEditingController senhaController = TextEditingController();
-  final formKey = GlobalKey<FormState>();
 
   bool valueValidator(String? value) {
     if (value != null && value.isEmpty) {
@@ -23,7 +23,7 @@ class LoginController {
       );
 
       if (usuario != null) {
-        navegaHomePage(context, usuario);
+        navegaHomePage(context: context, userModel: usuario);
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
@@ -34,11 +34,16 @@ class LoginController {
     }
   }
 
-  void navegaHomePage(BuildContext context, UserModel userModel) {
+  void navegaHomePage({
+    required BuildContext context,
+    required UserModel userModel,
+  }) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => NavigationPage(userModel: userModel),
+        builder: (context) => NavigationPage(
+          userModel: userModel,
+        ),
       ),
     );
   }

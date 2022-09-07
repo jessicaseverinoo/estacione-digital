@@ -1,4 +1,4 @@
-import 'package:estacione_digital/src/model/user_model.dart';
+import 'package:estacione_digital/src/shared/models/user_model.dart';
 import 'package:estacione_digital/src/view/Vehicles/vehicle_model.dart';
 import 'package:estacione_digital/src/view/Vehicles/vehicle_provider.dart';
 import 'package:estacione_digital/src/shared/widgets/error_widget.dart';

@@ -44,7 +44,7 @@ class _LoginState extends State<Login> {
                     controller: controller.cpfCnpjController,
                     textAlign: TextAlign.left,
                     decoration: const InputDecoration(
-                      hintText: '000.000.000-00 / 000.000.000/0000',
+                      hintText: 'Ex.: 000.000.000-00',
                     ),
                     keyboardType: TextInputType.number,
                     cursorColor: Colors.black12,

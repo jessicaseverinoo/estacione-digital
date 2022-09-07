@@ -1,5 +1,5 @@
 import 'package:estacione_digital/design_system/colors.dart';
-import 'package:estacione_digital/src/model/user_model.dart';
+import 'package:estacione_digital/src/shared/models/user_model.dart';
 import 'package:estacione_digital/src/shared/widgets/menu.dart';
 import 'package:estacione_digital/src/view/Home/home_page.dart';
 import 'package:estacione_digital/src/view/Vehicles/vehicle_page.dart';

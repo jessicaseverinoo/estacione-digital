@@ -1,10 +1,9 @@
-import 'package:estacione_digital/src/model/user_model.dart';
-import 'package:estacione_digital/src/view/Login/login_provider.dart';
+import 'package:estacione_digital/src/shared/models/user_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  final String cpfCnpj = '123.456.789-01';
-  final String password = "123456";
+  const String cpfCnpj = '123.456.789-01';
+  const String password = "123456";
   final userModel = UserModel(
     uuidUsuario: 'e7963200-2dd8-4a3d-8c7a-8f4c8eaf39bf',
     cpfCnpj: '123.456.789-01',
