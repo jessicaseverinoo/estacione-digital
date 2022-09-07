@@ -32,18 +32,32 @@ class ProfilePage extends StatelessWidget {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
+<<<<<<< HEAD
                     children: [
                       Text(
                         userModel.nome,
                         style: const TextStyle(
+=======
+                    children: const [
+                      Text(
+                        'Jessica Severino',
+                        style: TextStyle(
+>>>>>>> 0b3f937 (add controller navigation)
                             color: kWhite,
                             fontSize: 20,
                             fontWeight: FontWeight.bold),
                       ),
+<<<<<<< HEAD
                       const SizedBox(height: 4),
                       Text(
                         'Status: ${userModel.status}',
                         style: const TextStyle(color: kWhite),
+=======
+                      SizedBox(height: 4),
+                      Text(
+                        'Status: Ativo',
+                        style: TextStyle(color: kWhite),
+>>>>>>> 0b3f937 (add controller navigation)
                       ),
                     ],
                   )
@@ -61,8 +75,13 @@ class ProfilePage extends StatelessWidget {
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+<<<<<<< HEAD
               children: [
                 const Text(
+=======
+              children: const [
+                Text(
+>>>>>>> 0b3f937 (add controller navigation)
                   'CPF',
                   style: TextStyle(
                     color: kWhite,
@@ -71,17 +90,29 @@ class ProfilePage extends StatelessWidget {
                   ),
                 ),
                 Text(
+<<<<<<< HEAD
                   userModel.cpfCnpj,
                   style: const TextStyle(
+=======
+                  '407.813.158-16',
+                  style: TextStyle(
+>>>>>>> 0b3f937 (add controller navigation)
                     color: kWhite,
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+<<<<<<< HEAD
                 const SizedBox(height: 12),
                 const Divider(),
                 const SizedBox(height: 12),
                 const Text(
+=======
+                SizedBox(height: 12),
+                Divider(),
+                SizedBox(height: 12),
+                Text(
+>>>>>>> 0b3f937 (add controller navigation)
                   'Email',
                   style: TextStyle(
                     color: kWhite,
@@ -90,8 +121,13 @@ class ProfilePage extends StatelessWidget {
                   ),
                 ),
                 Text(
+<<<<<<< HEAD
                   userModel.email,
                   style: const TextStyle(
+=======
+                  'jessicaa.severinoo@gmail.com',
+                  style: TextStyle(
+>>>>>>> 0b3f937 (add controller navigation)
                     color: kWhite,
                     fontSize: 16,
                     fontWeight: FontWeight.w300,
