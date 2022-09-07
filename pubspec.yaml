@@ -23,6 +23,8 @@ dependencies:
   google_fonts: ^3.0.1
   auto_size_text: ^3.0.0
   local_auth: ^2.1.0
+  provider:
+
 
 dev_dependencies:
   flutter_test:

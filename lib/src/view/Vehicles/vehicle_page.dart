@@ -1,10 +1,11 @@
 import 'package:estacione_digital/src/model/user_model.dart';
+import 'package:estacione_digital/src/shared/widgets/error_widget.dart';
 import 'package:estacione_digital/src/view/Vehicles/vehicle_model.dart';
 import 'package:estacione_digital/src/view/Vehicles/vehicle_provider.dart';
-import 'package:estacione_digital/src/shared/widgets/error_widget.dart';
 import 'package:estacione_digital/src/view/Vehicles/widgets/add_vehicle_bottom_sheet.dart';
 import 'package:estacione_digital/src/view/Vehicles/widgets/vehicle_item_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class VehiclePage extends StatefulWidget {
   final UserModel userModel;
@@ -18,6 +19,7 @@ class VehiclePage extends StatefulWidget {
 class _VehiclePageState extends State<VehiclePage> {
   @override
   Widget build(BuildContext context) {
+    final VehicleProvider vehicleProvider = Provider.of(context);
     return SafeArea(
         child: Padding(
       padding: const EdgeInsets.all(16.0),
@@ -27,8 +29,7 @@ class _VehiclePageState extends State<VehiclePage> {
         children: [
           Expanded(
             child: FutureBuilder(
-              future:
-                  VehiclesProvider.getVehicles(widget.userModel.uuidUsuario),
+              future: vehicleProvider.getVehicles(widget.userModel.uuidUsuario),
               builder: (BuildContext context,
                   AsyncSnapshot<List<VehicleModel>> snapshot) {
                 if (snapshot.hasData) {
