@@ -36,6 +36,14 @@ class _EditVehicleBottomSheetState extends State<EditVehicleBottomSheet> {
     placaVeiculoController.text = widget.vehicleModel.placa;
     modeloVeiculoController.text = widget.vehicleModel.modelo;
     tipoVeiculoController.text = widget.vehicleModel.tipoVeiculo;
+
+    _isSelectedTypeVehicleCar =
+        widget.vehicleModel.tipoVeiculo == "CARRO" ? true : false;
+    _isSelectedTypeVehicleBuss =
+        widget.vehicleModel.tipoVeiculo == "ONIBUS" ? true : false;
+    _isSelectedTypeVehicleTruck =
+        widget.vehicleModel.tipoVeiculo == "TRUCK" ? true : false;
+    _isSelectedFavorite = widget.vehicleModel.favorito;
   }
 
   @override
@@ -120,7 +128,7 @@ class _EditVehicleBottomSheetState extends State<EditVehicleBottomSheet> {
                   ),
                   const Spacer(),
                   CupertinoSwitch(
-                    value: widget.vehicleModel.favorito || _isSelectedFavorite,
+                    value: _isSelectedFavorite,
                     onChanged: (bool value) {
                       setState(() {
                         _isSelectedFavorite = value;
