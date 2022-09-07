@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:estacione_digital/src/view/Vehicles/vehicle_model.dart';
+import 'package:estacione_digital/src/pages/Vehicles/vehicle_model.dart';
 import 'package:http/http.dart' as http;
 
 const API_BASE_URL = 'api-estacionamento-digital.herokuapp.com';

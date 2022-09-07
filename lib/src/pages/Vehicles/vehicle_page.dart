@@ -1,9 +1,9 @@
 import 'package:estacione_digital/src/shared/models/user_model.dart';
-import 'package:estacione_digital/src/view/Vehicles/vehicle_model.dart';
-import 'package:estacione_digital/src/view/Vehicles/vehicle_provider.dart';
+import 'package:estacione_digital/src/pages/Vehicles/vehicle_model.dart';
+import 'package:estacione_digital/src/pages/Vehicles/vehicle_provider.dart';
 import 'package:estacione_digital/src/shared/widgets/error_widget.dart';
-import 'package:estacione_digital/src/view/Vehicles/widgets/add_vehicle_bottom_sheet.dart';
-import 'package:estacione_digital/src/view/Vehicles/widgets/vehicle_item_widget.dart';
+import 'package:estacione_digital/src/pages/Vehicles/widgets/add_vehicle_bottom_sheet.dart';
+import 'package:estacione_digital/src/pages/Vehicles/widgets/vehicle_item_widget.dart';
 import 'package:flutter/material.dart';
 
 class VehiclePage extends StatefulWidget {

@@ -1,4 +1,4 @@
-import 'package:estacione_digital/src/view/Login/login_controller.dart';
+import 'package:estacione_digital/src/pages/Login/login_controller.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {

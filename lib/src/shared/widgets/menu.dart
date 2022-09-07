@@ -1,5 +1,5 @@
 import 'package:estacione_digital/design_system/colors.dart';
-import 'package:estacione_digital/src/view/Login/login_page.dart';
+import 'package:estacione_digital/src/pages/Login/login_page.dart';
 import 'package:flutter/material.dart';
 
 class Menu extends StatelessWidget {
