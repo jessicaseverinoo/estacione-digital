@@ -42,7 +42,7 @@ class _EditVehicleBottomSheetState extends State<EditVehicleBottomSheet> {
     _isSelectedTypeVehicleBuss =
         widget.vehicleModel.tipoVeiculo == "ONIBUS" ? true : false;
     _isSelectedTypeVehicleTruck =
-        widget.vehicleModel.tipoVeiculo == "TRUCK" ? true : false;
+        widget.vehicleModel.tipoVeiculo == "CAMINHAO" ? true : false;
     _isSelectedFavorite = widget.vehicleModel.favorito;
   }
 
