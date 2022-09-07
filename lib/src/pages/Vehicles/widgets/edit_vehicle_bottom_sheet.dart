@@ -3,6 +3,7 @@ import 'package:estacione_digital/src/pages/Vehicles/vehicle_model.dart';
 import 'package:estacione_digital/src/pages/Vehicles/vehicle_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class EditVehicleBottomSheet extends StatefulWidget {
   final String uuidUser;
@@ -32,8 +33,11 @@ class _EditVehicleBottomSheetState extends State<EditVehicleBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
+    final VehicleProvider vehicleProvider = Provider.of(context);
+
     TextEditingController placaVeiculoController =
         TextEditingController(text: widget.vehicleModel.placa);
+
     TextEditingController modeloVeiculoController =
         TextEditingController(text: widget.vehicleModel.modelo);
 
@@ -54,11 +58,17 @@ class _EditVehicleBottomSheetState extends State<EditVehicleBottomSheet> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                widget.vehicleModel.placa,
+                'Placa do veículo',
                 style: const TextStyle(color: kCoolGrey, fontSize: 15),
               ),
               const SizedBox(height: 8),
               TextFormField(
+                validator: (String? value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Insira a placa do veículo';
+                  }
+                  return null;
+                },
                 controller: placaVeiculoController,
                 textAlign: TextAlign.left,
                 decoration: const InputDecoration(
@@ -74,6 +84,12 @@ class _EditVehicleBottomSheetState extends State<EditVehicleBottomSheet> {
               ),
               const SizedBox(height: 8),
               TextFormField(
+                validator: (String? value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Insira a placa do veículo';
+                  }
+                  return null;
+                },
                 controller: modeloVeiculoController,
                 textAlign: TextAlign.left,
                 decoration: const InputDecoration(
@@ -178,14 +194,14 @@ class _EditVehicleBottomSheetState extends State<EditVehicleBottomSheet> {
                   );
 
                   if (_formKey.currentState!.validate()) {
-                    final addVehicle = await VehiclesProvider.updateVehicles(
+                    final addVehicle = await vehicleProvider.updateVehicles(
                       uuidUser: widget.uuidUser,
                       vehicle: payload,
                     );
 
                     if (_formKey.currentState!.validate()) {
                       Navigator.pop(context);
-                      VehiclesProvider.getVehicles(widget.uuidUser);
+                      vehicleProvider.getVehicles(widget.uuidUser);
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(

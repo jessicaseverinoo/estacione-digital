@@ -3,6 +3,7 @@ import 'package:estacione_digital/src/pages/Vehicles/vehicle_model.dart';
 import 'package:estacione_digital/src/pages/Vehicles/vehicle_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AddVehicleBottomSheet extends StatefulWidget {
   final String uuidUser;
@@ -34,6 +35,8 @@ class _AddVehicleBottomSheetState extends State<AddVehicleBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
+    final VehicleProvider vehicleProvider = Provider.of(context);
+
     return Container(
       height: MediaQuery.of(context).size.height * 0.85,
       padding: const EdgeInsets.only(
@@ -198,14 +201,14 @@ class _AddVehicleBottomSheetState extends State<AddVehicleBottomSheet> {
                   );
 
                   if (_formKey.currentState!.validate()) {
-                    final addVehicle = await VehiclesProvider.createVehicles(
+                    final addVehicle = await vehicleProvider.createVehicles(
                       uuidUser: widget.uuidUser,
                       vehicle: payload,
                     );
 
                     if (_formKey.currentState!.validate()) {
                       Navigator.pop(context);
-                      VehiclesProvider.getVehicles(widget.uuidUser);
+                      vehicleProvider.getVehicles(widget.uuidUser);
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
