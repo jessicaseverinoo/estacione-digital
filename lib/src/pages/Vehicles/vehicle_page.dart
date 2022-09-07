@@ -7,16 +7,11 @@ import 'package:estacione_digital/src/pages/Vehicles/widgets/vehicle_item_widget
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class VehiclePage extends StatefulWidget {
+class VehiclePage extends StatelessWidget {
   final UserModel userModel;
 
   const VehiclePage({Key? key, required this.userModel}) : super(key: key);
 
-  @override
-  State<VehiclePage> createState() => _VehiclePageState();
-}
-
-class _VehiclePageState extends State<VehiclePage> {
   @override
   Widget build(BuildContext context) {
     final VehicleProvider vehicleProvider = Provider.of(context);
@@ -29,7 +24,7 @@ class _VehiclePageState extends State<VehiclePage> {
         children: [
           Expanded(
             child: FutureBuilder(
-              future: vehicleProvider.getVehicles(widget.userModel.uuidUsuario),
+              future: vehicleProvider.getVehicles(userModel.uuidUsuario),
               builder: (BuildContext context,
                   AsyncSnapshot<List<VehicleModel>> snapshot) {
                 if (snapshot.hasData) {
@@ -39,7 +34,7 @@ class _VehiclePageState extends State<VehiclePage> {
                         .map(
                           (VehicleModel vehicleModel) => VehicleItemWidget(
                             vehicleModel: vehicleModel,
-                            userModel: widget.userModel,
+                            userModel: userModel,
                           ),
                         )
                         .toList(),
@@ -62,7 +57,7 @@ class _VehiclePageState extends State<VehiclePage> {
                 context: context,
                 builder: (BuildContext context) {
                   return AddVehicleBottomSheet(
-                    uuidUser: widget.userModel.uuidUsuario,
+                    uuidUser: userModel.uuidUsuario,
                   );
                 },
               );

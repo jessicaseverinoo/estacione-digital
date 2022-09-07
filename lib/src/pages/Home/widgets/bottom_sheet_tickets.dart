@@ -7,7 +7,8 @@ class BottomSheetTickets extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.85,
       padding: const EdgeInsets.only(
         left: 16.0,
         right: 16,
@@ -18,7 +19,7 @@ class BottomSheetTickets extends StatelessWidget {
         slivers: [
           SliverGrid(
             gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 320,
+              maxCrossAxisExtent: 360,
               mainAxisExtent: 40,
               mainAxisSpacing: 8.0,
               crossAxisSpacing: 8.0,

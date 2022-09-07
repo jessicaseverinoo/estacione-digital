@@ -21,8 +21,27 @@ class EditVehicleBottomSheet extends StatefulWidget {
 
 class _EditVehicleBottomSheetState extends State<EditVehicleBottomSheet> {
   final _formKey = GlobalKey<FormState>();
+  final TextEditingController placaVeiculoController = TextEditingController();
+  final TextEditingController modeloVeiculoController = TextEditingController();
+  final TextEditingController tipoVeiculoController = TextEditingController();
+
   bool _isSelectedFavorite = false;
-  bool _isSelectedTypeVehicle = false;
+  bool _isSelectedTypeVehicleCar = false;
+  bool _isSelectedTypeVehicleBuss = false;
+  bool _isSelectedTypeVehicleTruck = false;
+
+  @override
+  void initState() {
+    super.initState();
+    placaVeiculoController.text = widget.vehicleModel.placa;
+    modeloVeiculoController.text = widget.vehicleModel.modelo;
+    tipoVeiculoController.text = widget.vehicleModel.tipoVeiculo;
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   bool valueValidator(String? value) {
     if (value != null && value.isEmpty) {
@@ -34,12 +53,6 @@ class _EditVehicleBottomSheetState extends State<EditVehicleBottomSheet> {
   @override
   Widget build(BuildContext context) {
     final VehicleProvider vehicleProvider = Provider.of(context);
-
-    TextEditingController placaVeiculoController =
-        TextEditingController(text: widget.vehicleModel.placa);
-
-    TextEditingController modeloVeiculoController =
-        TextEditingController(text: widget.vehicleModel.modelo);
 
     return Container(
       height: MediaQuery.of(context).size.height * 0.85,
@@ -57,9 +70,9 @@ class _EditVehicleBottomSheetState extends State<EditVehicleBottomSheet> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 'Placa do veículo',
-                style: const TextStyle(color: kCoolGrey, fontSize: 15),
+                style: TextStyle(color: kCoolGrey, fontSize: 15),
               ),
               const SizedBox(height: 8),
               TextFormField(
@@ -127,13 +140,15 @@ class _EditVehicleBottomSheetState extends State<EditVehicleBottomSheet> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        _isSelectedTypeVehicle = !_isSelectedTypeVehicle;
+                        _isSelectedTypeVehicleCar = !_isSelectedTypeVehicleCar;
+                        _isSelectedTypeVehicleBuss = false;
+                        _isSelectedTypeVehicleTruck = false;
                       });
                     },
                     child: Column(
                       children: [
                         Image(
-                          image: AssetImage(_isSelectedTypeVehicle
+                          image: AssetImage(_isSelectedTypeVehicleCar
                               ? 'assets/icons/car_on.png'
                               : 'assets/icons/car_off.png'),
                           height: 64,
@@ -146,13 +161,16 @@ class _EditVehicleBottomSheetState extends State<EditVehicleBottomSheet> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        _isSelectedTypeVehicle = !_isSelectedTypeVehicle;
+                        _isSelectedTypeVehicleTruck =
+                            !_isSelectedTypeVehicleTruck;
+                        _isSelectedTypeVehicleCar = false;
+                        _isSelectedTypeVehicleBuss = false;
                       });
                     },
                     child: Column(
                       children: [
                         Image(
-                          image: AssetImage(_isSelectedTypeVehicle
+                          image: AssetImage(_isSelectedTypeVehicleTruck
                               ? 'assets/icons/truck_on.png'
                               : 'assets/icons/truck_off.png'),
                           height: 64,
@@ -165,13 +183,16 @@ class _EditVehicleBottomSheetState extends State<EditVehicleBottomSheet> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        _isSelectedTypeVehicle = !_isSelectedTypeVehicle;
+                        _isSelectedTypeVehicleBuss =
+                            !_isSelectedTypeVehicleBuss;
+                        _isSelectedTypeVehicleCar = false;
+                        _isSelectedTypeVehicleTruck = false;
                       });
                     },
                     child: Column(
                       children: [
                         Image(
-                          image: AssetImage(_isSelectedTypeVehicle
+                          image: AssetImage(_isSelectedTypeVehicleBuss
                               ? 'assets/icons/buss_on.png'
                               : 'assets/icons/buss_off.png'),
                           height: 64,
@@ -190,7 +211,10 @@ class _EditVehicleBottomSheetState extends State<EditVehicleBottomSheet> {
                     placa: placaVeiculoController.text,
                     modelo: modeloVeiculoController.text,
                     favorito: _isSelectedFavorite,
-                    tipoVeiculo: 'CARRO',
+                    tipoVeiculo: _getTypeVehicle(
+                        _isSelectedTypeVehicleCar,
+                        _isSelectedTypeVehicleBuss,
+                        _isSelectedTypeVehicleTruck),
                   );
 
                   if (_formKey.currentState!.validate()) {
@@ -218,5 +242,19 @@ class _EditVehicleBottomSheetState extends State<EditVehicleBottomSheet> {
         ),
       ),
     );
+  }
+
+  String _getTypeVehicle(bool isSelectedTypeVehicleCar,
+      bool isSelectedTypeVehicleBuss, bool isSelectedTypeVehicleTruck) {
+    if (_isSelectedTypeVehicleTruck) {
+      return 'CAMINHAO';
+    }
+    if (_isSelectedTypeVehicleCar) {
+      return 'CARRO';
+    }
+    if (_isSelectedTypeVehicleBuss) {
+      return 'ONIBUS';
+    }
+    return '';
   }
 }

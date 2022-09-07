@@ -13,8 +13,8 @@ class LoginProvider {
 
     if (response.statusCode == 200) {
       return UserModel.fromJson(convert.jsonDecode(response.body));
+    } else {
+      return null;
     }
-
-    return null;
   }
 }
