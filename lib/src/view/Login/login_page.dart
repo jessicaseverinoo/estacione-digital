@@ -1,6 +1,4 @@
-import 'package:estacione_digital/src/model/user_model.dart';
-import 'package:estacione_digital/src/view/Login/login_provider.dart';
-import 'package:estacione_digital/src/view/Navigation/navigation_page.dart';
+import 'package:estacione_digital/src/view/Login/login_controller.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
@@ -11,22 +9,12 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  TextEditingController cpfCnpjController = TextEditingController();
-  TextEditingController senhaController = TextEditingController();
-
-  final _formKey = GlobalKey<FormState>();
-
-  bool valueValidator(String? value) {
-    if (value != null && value.isEmpty) {
-      return true;
-    }
-    return false;
-  }
+  final controller = LoginController();
 
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: _formKey,
+      key: controller.formKey,
       child: Scaffold(
         backgroundColor: Colors.white,
         body: Center(
@@ -48,12 +36,12 @@ class _LoginState extends State<Login> {
                   const SizedBox(height: 8),
                   TextFormField(
                     validator: (String? value) {
-                      if (valueValidator(value)) {
+                      if (controller.valueValidator(value)) {
                         return 'Insira o CPF ou CNPJ';
                       }
                       return null;
                     },
-                    controller: cpfCnpjController,
+                    controller: controller.cpfCnpjController,
                     textAlign: TextAlign.left,
                     decoration: const InputDecoration(
                       hintText: '000.000.000-00 / 000.000.000/0000',
@@ -66,12 +54,12 @@ class _LoginState extends State<Login> {
                   const SizedBox(height: 8),
                   TextFormField(
                     validator: (String? value) {
-                      if (valueValidator(value)) {
+                      if (controller.valueValidator(value)) {
                         return 'Insira a senha';
                       }
                       return null;
                     },
-                    controller: senhaController,
+                    controller: controller.senhaController,
                     textAlign: TextAlign.left,
                     decoration: const InputDecoration(
                       hintText: '••••••••••••',
@@ -87,7 +75,7 @@ class _LoginState extends State<Login> {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-                        _clickLogin(context);
+                        controller.clickLogin(context);
                       },
                       child: const Text('Entrar'),
                     ),
@@ -109,32 +97,6 @@ class _LoginState extends State<Login> {
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  void _clickLogin(BuildContext context) async {
-    if (_formKey.currentState!.validate()) {
-      var usuario = await LoginProvider.login(
-          cpfCnpjController.text, senhaController.text);
-
-      if (usuario != null) {
-        _navegaHomePage(context, usuario);
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Dados de login inválidos'),
-          ),
-        );
-      }
-    }
-  }
-
-  void _navegaHomePage(BuildContext context, UserModel userModel) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => NavigationPage(userModel: userModel),
       ),
     );
   }
