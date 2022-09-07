@@ -1,13 +1,14 @@
 import 'dart:convert';
 
 import 'package:estacione_digital/src/view/Vehicles/vehicle_model.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 const API_BASE_URL = 'api-estacionamento-digital.herokuapp.com';
 const HEADER = {"Content-Type": "application/json"};
 
-class VehiclesProvider {
-  static Future<List<VehicleModel>> getVehicles(String uuidUser) async {
+class VehicleProvider with ChangeNotifier {
+  Future<List<VehicleModel>> getVehicles(String uuidUser) async {
     try {
       final url = Uri.http(API_BASE_URL, 'usuarios/$uuidUser');
 
@@ -30,7 +31,7 @@ class VehiclesProvider {
     }
   }
 
-  static Future createVehicles(
+  Future createVehicles(
       {required String uuidUser, required VehicleModel vehicle}) async {
     try {
       final url = Uri.http(API_BASE_URL, 'usuarios/$uuidUser/veiculos');
@@ -51,12 +52,13 @@ class VehiclesProvider {
       if (response.statusCode != 200) {
         throw Exception('Failed to create vehicle');
       }
+      notifyListeners();
     } catch (error) {
       throw Exception('Failed to create vehicle $error');
     }
   }
 
-  static Future updateVehicles(
+  Future updateVehicles(
       {required String uuidUser, required VehicleModel vehicle}) async {
     try {
       final url = Uri.http(
@@ -78,12 +80,13 @@ class VehiclesProvider {
       if (response.statusCode != 200) {
         throw Exception('Failed to update vehicle');
       }
+      notifyListeners();
     } catch (error) {
       throw Exception('Failed to update vehicle $error');
     }
   }
 
-  static Future deleteVehicles(
+  Future deleteVehicles(
       {required String uuidUser, required String uuidVeiculo}) async {
     try {
       final url =
@@ -94,6 +97,7 @@ class VehiclesProvider {
       if (response.statusCode != 200) {
         throw Exception('Failed to delete vehicle');
       }
+      notifyListeners();
     } catch (error) {
       throw Exception('Failed to delete vehicle $error');
     }

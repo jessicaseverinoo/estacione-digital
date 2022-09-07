@@ -5,6 +5,7 @@ import 'package:estacione_digital/src/view/Vehicles/vehicle_model.dart';
 import 'package:estacione_digital/src/view/Vehicles/vehicle_provider.dart';
 import 'package:estacione_digital/src/view/Vehicles/widgets/edit_vehicle_bottom_sheet.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class VehicleItemWidget extends StatefulWidget {
   final VehicleModel vehicleModel;
@@ -21,6 +22,7 @@ class VehicleItemWidget extends StatefulWidget {
 class _VehicleItemWidgetState extends State<VehicleItemWidget> {
   @override
   Widget build(BuildContext context) {
+    final VehicleProvider vehicleProvider = Provider.of(context);
     bool isFavoriteVehicle = widget.vehicleModel.favorito;
 
     return Card(
@@ -57,13 +59,7 @@ class _VehicleItemWidgetState extends State<VehicleItemWidget> {
                   builder: (BuildContext context) {
                     return EditVehicleBottomSheet(
                       uuidUser: widget.userModel.uuidUsuario,
-                      vehicleModel: VehicleModel(
-                        uuidVeiculo: widget.vehicleModel.uuidVeiculo,
-                        placa: widget.vehicleModel.placa,
-                        modelo: widget.vehicleModel.modelo,
-                        favorito: widget.vehicleModel.favorito,
-                        tipoVeiculo: widget.vehicleModel.tipoVeiculo,
-                      ),
+                      vehicleModel: widget.vehicleModel,
                     );
                   },
                 );
@@ -75,8 +71,8 @@ class _VehicleItemWidgetState extends State<VehicleItemWidget> {
             ),
             IconButton(
               onPressed: () {
-                _showMyDialogDelete(
-                    context, widget.vehicleModel, widget.userModel);
+                _showMyDialogDelete(context, widget.vehicleModel,
+                    widget.userModel, vehicleProvider);
               },
               icon: const Icon(
                 Icons.delete,
@@ -89,8 +85,8 @@ class _VehicleItemWidgetState extends State<VehicleItemWidget> {
     );
   }
 
-  Future<void> _showMyDialogDelete(
-      context, VehicleModel vehicleModel, UserModel userModel) async {
+  Future<void> _showMyDialogDelete(context, VehicleModel vehicleModel,
+      UserModel userModel, VehicleProvider vehicleProvider) async {
     return showDialog<void>(
       context: context,
       barrierDismissible: false,
@@ -114,7 +110,7 @@ class _VehicleItemWidgetState extends State<VehicleItemWidget> {
             TextButton(
               child: const Text('Confirmar'),
               onPressed: () {
-                _deleteVehicles(vehicleModel, userModel);
+                _deleteVehicles(vehicleModel, userModel, vehicleProvider);
               },
             ),
           ],
@@ -123,8 +119,9 @@ class _VehicleItemWidgetState extends State<VehicleItemWidget> {
     );
   }
 
-  void _deleteVehicles(VehicleModel vehicleModel, UserModel userModel) {
-    VehiclesProvider.deleteVehicles(
+  void _deleteVehicles(VehicleModel vehicleModel, UserModel userModel,
+      VehicleProvider vehicleProvider) {
+    vehicleProvider.deleteVehicles(
         uuidUser: userModel.uuidUsuario, uuidVeiculo: vehicleModel.uuidVeiculo);
     Navigator.of(context).pop();
   }
