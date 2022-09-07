@@ -1,5 +1,5 @@
 import 'package:estacione_digital/design_system/colors.dart';
-import 'package:estacione_digital/src/view/Home/widgets/dropdown_vehicle.dart';
+import 'package:estacione_digital/src/pages/Home/widgets/dropdown_vehicle.dart';
 import 'package:flutter/material.dart';
 
 class BottomSheetTickets extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:estacione_digital/design_system/light_theme.dart';
 import 'package:estacione_digital/src/app.dart';
-import 'package:estacione_digital/src/view/Vehicles/vehicle_provider.dart';
+import 'package:estacione_digital/src/pages/Vehicles/vehicle_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -11,7 +11,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -22,7 +21,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
+        title: 'Estacione Digital',
         theme: lightTheme,
         home: const App(),
       ),

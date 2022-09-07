@@ -1,9 +1,7 @@
 import 'package:estacione_digital/design_system/colors.dart';
-import 'package:estacione_digital/src/model/user_model.dart';
+import 'package:estacione_digital/src/pages/Navigation/navigation_controller.dart';
+import 'package:estacione_digital/src/shared/models/user_model.dart';
 import 'package:estacione_digital/src/shared/widgets/menu.dart';
-import 'package:estacione_digital/src/view/Home/home_page.dart';
-import 'package:estacione_digital/src/view/Vehicles/vehicle_page.dart';
-import 'package:estacione_digital/src/view/Wallet/wallet_page.dart';
 import 'package:flutter/material.dart';
 
 class NavigationPage extends StatefulWidget {
@@ -16,33 +14,17 @@ class NavigationPage extends StatefulWidget {
 }
 
 class _NavigationPageState extends State<NavigationPage> {
-  int _selectedIndex = 0;
-
-  List<Widget> _pageOptions() => [
-        HomePage(userModel: widget.userModel),
-        WalletPage(userModel: widget.userModel),
-        VehiclePage(userModel: widget.userModel),
-        const Text(
-          'Index 4: School',
-        ),
-      ];
-
-  static const Map<int, String> _titlePages = {
-    0: "Início",
-    1: "Carteira",
-    2: "Veículos",
-    3: "Perfil"
-  };
+  final controller = NavigationController();
 
   void _onItemTapped(int index) {
     setState(() {
-      _selectedIndex = index;
+      controller.selectedIndex = index;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> pageOptions = _pageOptions();
+    final List<Widget> pageOptions = controller.pageOptions(widget.userModel);
 
     return Scaffold(
       appBar: AppBar(
@@ -57,7 +39,7 @@ class _NavigationPageState extends State<NavigationPage> {
             );
           },
         ),
-        title: Text(_titlePages[_selectedIndex].toString()),
+        title: Text(controller.titlePages[controller.selectedIndex].toString()),
         actions: [
           IconButton(
             icon: const Icon(Icons.notifications),
@@ -68,7 +50,7 @@ class _NavigationPageState extends State<NavigationPage> {
       ),
       drawer: const Menu(),
       body: Center(
-        child: pageOptions.elementAt(_selectedIndex),
+        child: pageOptions.elementAt(controller.selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: kPrimary,
@@ -78,27 +60,10 @@ class _NavigationPageState extends State<NavigationPage> {
         selectedLabelStyle: const TextStyle(color: kPrimary),
         selectedIconTheme: const IconThemeData(color: kPrimary),
         unselectedLabelStyle: const TextStyle(color: kCoolGrey),
-        currentIndex: _selectedIndex,
+        currentIndex: controller.selectedIndex,
         selectedItemColor: kPrimary,
         onTap: _onItemTapped,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_rounded),
-            label: 'Início',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.payment_rounded),
-            label: 'Carteira',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.commute_rounded),
-            label: 'Veículos',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Perfil',
-          ),
-        ],
+        items: controller.barItem(),
       ),
     );
   }
