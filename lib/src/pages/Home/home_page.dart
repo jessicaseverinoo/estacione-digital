@@ -15,7 +15,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // final Usuario usuario;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -26,14 +25,12 @@ class _HomePageState extends State<HomePage> {
             children: [
               Text('Olá, ${widget.userModel.nome}'),
               const Spacer(),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(1000),
-                child: Image.network(
-                  'https://github.com/jessicaseverinoo.png',
-                  height: 48,
-                  width: 48,
-                ),
-              )
+              const CircleAvatar(
+                  backgroundColor: kPrimary,
+                  child: Icon(
+                    Icons.person_rounded,
+                    color: kWhite,
+                  )),
             ],
           ),
           const SizedBox(
