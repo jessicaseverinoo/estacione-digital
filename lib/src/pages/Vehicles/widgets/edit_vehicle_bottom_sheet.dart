@@ -1,6 +1,6 @@
 import 'package:estacione_digital/design_system/colors.dart';
 import 'package:estacione_digital/src/models/vehicle_model.dart';
-import 'package:estacione_digital/src/provider/vehicle_provider.dart';
+import 'package:estacione_digital/src/providers/vehicle_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

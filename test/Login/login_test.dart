@@ -1,7 +1,6 @@
 import 'package:estacione_digital/src/models/user_model.dart';
-import 'package:estacione_digital/src/provider/login_provider.dart';
+import 'package:estacione_digital/src/providers/login_provider.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'dart:convert' as convert;
 
 void main() {
   const String cpfCnpj = '123.456.789-01';
@@ -15,9 +14,6 @@ void main() {
     status: 'ATIVO',
     token: 'null',
   );
-
-  final response =
-      '{"uuidUsuario": "e7963200-2dd8-4a3d-8c7a-8f4c8eaf39bf", "cpfCnpj": "123.456.789-01", "nome": "Jessica Severino", "email": "jessicaa.severinoo@gmail.com", "status": "ATIVO", "token": "e7963200-2dd8-4a3d-8c7a-8f4c8eaf39bf"}';
 
   test('Verifica se os campos de CPF ou CNPJ e senha estão preenchidos', () {});
 

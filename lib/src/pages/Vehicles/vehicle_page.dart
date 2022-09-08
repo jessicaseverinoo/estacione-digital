@@ -1,9 +1,9 @@
 import 'package:estacione_digital/src/models/user_model.dart';
 import 'package:estacione_digital/src/models/vehicle_model.dart';
-import 'package:estacione_digital/src/provider/vehicle_provider.dart';
-import 'package:estacione_digital/src/shared/widgets/error_widget.dart';
 import 'package:estacione_digital/src/pages/Vehicles/widgets/add_vehicle_bottom_sheet.dart';
 import 'package:estacione_digital/src/pages/Vehicles/widgets/vehicle_item_widget.dart';
+import 'package:estacione_digital/src/providers/vehicle_provider.dart';
+import 'package:estacione_digital/src/shared/widgets/error_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
