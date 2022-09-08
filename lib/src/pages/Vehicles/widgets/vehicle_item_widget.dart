@@ -1,8 +1,8 @@
 import 'package:estacione_digital/design_system/colors.dart';
-import 'package:estacione_digital/src/shared/models/user_model.dart';
+import 'package:estacione_digital/src/models/user_model.dart';
 import 'package:estacione_digital/src/shared/helpers/list_icons_vehicles.dart';
-import 'package:estacione_digital/src/pages/Vehicles/vehicle_model.dart';
-import 'package:estacione_digital/src/pages/Vehicles/vehicle_provider.dart';
+import 'package:estacione_digital/src/models/vehicle_model.dart';
+import 'package:estacione_digital/src/provider/vehicle_provider.dart';
 import 'package:estacione_digital/src/pages/Vehicles/widgets/edit_vehicle_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

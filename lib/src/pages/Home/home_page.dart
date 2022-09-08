@@ -1,5 +1,5 @@
 import 'package:estacione_digital/design_system/colors.dart';
-import 'package:estacione_digital/src/shared/models/user_model.dart';
+import 'package:estacione_digital/src/models/user_model.dart';
 import 'package:estacione_digital/src/shared/widgets/alert_card.dart';
 import 'package:estacione_digital/src/pages/Home/widgets/bottom_sheet_tickets.dart';
 import 'package:estacione_digital/src/pages/Home/widgets/timer.dart';

@@ -1,6 +1,6 @@
 import 'package:estacione_digital/design_system/colors.dart';
-import 'package:estacione_digital/src/pages/Navigation/navigation_controller.dart';
-import 'package:estacione_digital/src/shared/models/user_model.dart';
+import 'package:estacione_digital/src/models/user_model.dart';
+import 'package:estacione_digital/src/controller/navigation_controller.dart';
 import 'package:estacione_digital/src/shared/widgets/menu.dart';
 import 'package:flutter/material.dart';
 

@@ -1,8 +1,8 @@
+import 'package:estacione_digital/src/models/user_model.dart';
 import 'package:estacione_digital/src/pages/Home/home_page.dart';
 import 'package:estacione_digital/src/pages/Profile/profile_page.dart';
 import 'package:estacione_digital/src/pages/Vehicles/vehicle_page.dart';
 import 'package:estacione_digital/src/pages/Wallet/wallet_page.dart';
-import 'package:estacione_digital/src/shared/models/user_model.dart';
 import 'package:flutter/material.dart';
 
 class NavigationController {

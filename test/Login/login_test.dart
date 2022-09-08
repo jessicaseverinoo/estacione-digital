@@ -1,5 +1,5 @@
-import 'package:estacione_digital/src/pages/Login/login_provider.dart';
-import 'package:estacione_digital/src/shared/models/user_model.dart';
+import 'package:estacione_digital/src/models/user_model.dart';
+import 'package:estacione_digital/src/provider/login_provider.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'dart:convert' as convert;
 

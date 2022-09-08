@@ -1,6 +1,6 @@
 import 'dart:convert' as convert;
 
-import 'package:estacione_digital/src/shared/models/user_model.dart';
+import 'package:estacione_digital/src/models/user_model.dart';
 import 'package:http/http.dart' as http;
 
 class LoginProvider {
