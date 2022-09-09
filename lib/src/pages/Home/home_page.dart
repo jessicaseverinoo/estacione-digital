@@ -82,7 +82,7 @@ class _HomePageState extends State<HomePage> {
             sufixIcon: Icons.push_pin_outlined,
             title: 'Horário de funcionamento',
             text:
-                'Para mais informações de uso e esclarecimentos sobre fracionamento, tolerância e pós-utilização, clique aqui.',
+                'De segunda a sexta-feira das 7h às 19h e aos sábados das 7h às 13h',
           ),
           const SizedBox(height: 12),
           const Timer(),
