@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.estacione_digital">
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="estacione_digital"
+        android:label="Estacione Digital"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
